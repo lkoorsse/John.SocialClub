@@ -11,18 +11,20 @@ namespace CodedUITestProject1
     [CodedUITest]
     public class RegistrationMandatoryError
     {
-        public RegistrationMandatoryError()
+        public RegistrationMandatoryError() // empty default constructor
         {
         }
 
         [TestMethod]
         public void RegMandatoryError()
         {
-            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+
             this.UIMap.LoginSuccess();
             this.UIMap.SelectRegisterNoMandatoryItemsCompleted();
             this.UIMap.AssertRegistrationError();
-          
+            this.UIMap.RegistrationErrorDismiss();
+            this.UIMap.SocialClubApplicationClose();
+
         }
 
         #region Additional test attributes

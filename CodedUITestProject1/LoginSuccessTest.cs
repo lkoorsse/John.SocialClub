@@ -11,18 +11,19 @@ namespace CodedUITestProject1
     [CodedUITest]
     public class LoginSuccessTest
     {
-        public LoginSuccessTest()
+
+        public LoginSuccessTest() // empty default constructor
         {
         }
 
-        
 
         [TestMethod]
         public void LoginToRegister()
         {
             this.UIMap.LoginSuccess();
             this.UIMap.AssertRegistrationPage();
-            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+            this.UIMap.SocialClubApplicationClose();
+           
         }
 
         #region Additional test attributes

@@ -12,7 +12,7 @@ namespace CodedUITestProject1
     [CodedUITest]
     public class MembershipsTests
     {
-        public MembershipsTests()
+        public MembershipsTests() // empty default constructor
         {
         }
 
@@ -26,40 +26,147 @@ namespace CodedUITestProject1
             this.UIMap.UpdateMemberSalary();
             this.UIMap.NewMemberSalaryUpdateCheck();
             this.UIMap.DeleteNewMember();
-            //this.UIMap.NewMemberDeleteClearUpdateFields();
+            this.UIMap.SocialClubApplicationClose();
 
+        }
 
-            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+        [TestMethod]
+        public void MembershipPageControls()
+        {
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.DeleteNewMember();
+            this.UIMap.SocialClubApplicationClose();
+          
+         }
 
+        [TestMethod]
+        public void MembershipPageFilterSearchOnOR()
+        {
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.ManageMemberSearchORFilter();
+            this.UIMap.CheckEntryExistFilterOnOR();
+            this.UIMap.DeleteNewMember();
+            this.UIMap.SocialClubApplicationClose();
+
+        }
+
+        [TestMethod]
+        public void MembershipPageFilterSearchOnAnd()
+        {
+
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.ManageMemebrSearchAndFilter();
+            this.UIMap.CheckEntryExistFilterOnAnd();
+            this.UIMap.DeleteNewMember();
+            this.UIMap.SocialClubApplicationClose();
+
+        }
+
+        [TestMethod]
+        public void MembershipRefreshFilter()
+        {
+
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.ManageSelectFitlerRefresh();
+            this.UIMap.ManageRefreshFilterClearsOccupationField();
+            this.UIMap.ManageRefreshFilterClearsMaritalStatusField();
+            this.UIMap.DeleteNewMember();
+            this.UIMap.SocialClubApplicationClose();
+
+        }
+
+        [TestMethod]
+        public void MembershipRefreshNoFilterSearch()
+        {
+
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.MemberNoFiterSearch();
+            this.UIMap.MemberSearchAndRefresh();
+            this.UIMap.MemberSearchNoValueFilterNoMemberResults();
+            this.UIMap.DeleteNewMember();
+            this.UIMap.SocialClubApplicationClose();
+
+        }
+
+        [TestMethod]
+        public void MembershipPageActionPrint()
+        {
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.SelectPrintButton();
+            this.UIMap.ManageMemberPrintModalDisplay();
+            this.UIMap.ManageMemberClosePrint();
+            this.UIMap.SocialClubApplicationClose();
+
+        }
+
+        [TestMethod]
+        public void MembershipPageActionPrintPreview()
+        {
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.ManageMemberSelectPrintPreview();
+            this.UIMap.CheckPrintPreviewDisplay();
+            this.UIMap.ClosePrintPreview();
+            this.UIMap.SocialClubApplicationClose();
+
+        }
+        
+
+        [TestMethod]
+            public void MembershipPageActionPrintExport()
+            {
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.ManageMemberSelectExport();
+            this.UIMap.ManageMemberSelectExportExcelDisplay();
+            this.UIMap.SocialClubApplicationClose();
 
         }
 
 
+        [TestMethod]
+        public void DeleteMemberClearFields()
+        {
 
+            this.UIMap.LoginSuccess();
+            this.UIMap.NewRegistrationForCheckEntry();
+            this.UIMap.DeleteMember();
+            this.UIMap.DeleteClearUpdateFields();
+            this.UIMap.UpdateFieldDisabled();
+            this.UIMap.DeleteNewMember();
+            this.UIMap.SocialClubApplicationClose();
+
+        }
         #region Additional test attributes
 
-            // You can use the following additional attributes as you write your tests:
+        // You can use the following additional attributes as you write your tests:
 
-            ////Use TestInitialize to run code before running each test 
-            //[TestInitialize()]
-            //public void MyTestInitialize()
-            //{        
-            //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-            //}
+        ////Use TestInitialize to run code before running each test 
+        //[TestInitialize()]
+        //public void MyTestInitialize()
+        //{        
+        //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+        //}
 
-            ////Use TestCleanup to run code after each test has run
-            //[TestCleanup()]
-            //public void MyTestCleanup()
-            //{        
-            //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-            //}
+        ////Use TestCleanup to run code after each test has run
+        //[TestCleanup()]
+        //public void MyTestCleanup()
+        //{        
+        //    // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+        //}
 
-            #endregion
+        #endregion
 
-            /// <summary>
-            ///Gets or sets the test context which provides
-            ///information about and functionality for the current test run.
-            ///</summary>
+        /// <summary>
+        ///Gets or sets the test context which provides
+        ///information about and functionality for the current test run.
+        ///</summary>
         public TestContext TestContext
         {
             get

@@ -53,11 +53,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodedUITest1.cs" />
     <Compile Include="RegistrationMandatoryError.cs" />
-    <Compile Include="DeleteMember.cs" />
-    <Compile Include="CustomCaller.cs" />
-    <Compile Include="LoginClass.cs" />
     <Compile Include="MembershipsTests.cs" />
     <Compile Include="NewRegistrationSuccessTest.cs" />
     <Compile Include="LoginSuccessTest.cs" />

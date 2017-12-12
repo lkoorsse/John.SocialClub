@@ -458,20 +458,24 @@ namespace CodedUITestProject1
         }
         
         /// <summary>
-        /// delete new member entry
+        /// DeleteNewMember
         /// </summary>
         public void DeleteNewMember()
         {
             #region Variable Declarations
+            WinRowHeader uIItemRowHeader = this.UISocialClubMembershipWindow.UIDataGridViewMembersWindow.UIDataGridViewTable.UIRow0Row2.UIItemRowHeader;
             WinButton uIDeleteButton = this.UISocialClubMembershipWindow.UIDeleteWindow.UIDeleteButton;
             WinButton uIOKButton = this.UIDeletesuccessfullWindow.UIOKWindow.UIOKButton;
             #endregion
 
+            // Double-Click row header
+            Mouse.DoubleClick(uIItemRowHeader, new Point(26, 6));
+
             // Click 'Delete' button
-            Mouse.Click(uIDeleteButton, new Point(29, 13));
+            Mouse.Click(uIDeleteButton, new Point(24, 16));
 
             // Click 'OK' button
-            Mouse.Click(uIOKButton, new Point(50, 12));
+            Mouse.Click(uIOKButton, new Point(24, 11));
         }
         
         /// <summary>
@@ -678,6 +682,346 @@ namespace CodedUITestProject1
 
             // Click 'Update' button
             Mouse.Click(uIUpdateButton, new Point(39, 14));
+        }
+        
+        /// <summary>
+        /// Search on And Filter matching both values for Occupation and Marital Status
+        /// </summary>
+        public void ManageMemebrSearchAndFilter()
+        {
+            #region Variable Declarations
+            WinComboBox uICmbSearchOccupationComboBox = this.UISocialClubMembershipWindow.UICmbSearchOccupationWindow.UICmbSearchOccupationComboBox;
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbSearchMaritalStatWindow.UIMaritalstatusComboBox;
+            WinButton uISearchButton = this.UISocialClubMembershipWindow.UISearchWindow.UISearchButton;
+            #endregion
+
+            // Select 'Doctor' in 'cmbSearchOccupation' combo box
+            uICmbSearchOccupationComboBox.SelectedItem = this.ManageMemebrSearchAndFilterParams.UICmbSearchOccupationComboBoxSelectedItem;
+
+            // Select 'Married' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.ManageMemebrSearchAndFilterParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(72, 13));
+        }
+        
+        /// <summary>
+        /// search on OR filter
+        /// </summary>
+        public void ManageMemberSearchORFilter()
+        {
+            #region Variable Declarations
+            WinButton uIRefreshButton = this.UISocialClubMembershipWindow.UIRefreshWindow.UIRefreshButton;
+            WinComboBox uICmbSearchOccupationComboBox = this.UISocialClubMembershipWindow.UICmbSearchOccupationWindow.UICmbSearchOccupationComboBox;
+            WinComboBox uICmbOperandComboBox = this.UISocialClubMembershipWindow.UICmbOperandWindow.UICmbOperandComboBox;
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbSearchMaritalStatWindow.UIMaritalstatusComboBox;
+            WinButton uISearchButton = this.UISocialClubMembershipWindow.UISearchWindow.UISearchButton;
+            #endregion
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(49, 10));
+
+            // Select 'Doctor' in 'cmbSearchOccupation' combo box
+            uICmbSearchOccupationComboBox.SelectedItem = this.ManageMemberSearchORFilterParams.UICmbSearchOccupationComboBoxSelectedItem;
+
+            // Select 'OR' in 'cmbOperand' combo box
+            uICmbOperandComboBox.SelectedItem = this.ManageMemberSearchORFilterParams.UICmbOperandComboBoxSelectedItem;
+
+            // Select 'Married' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.ManageMemberSearchORFilterParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(42, 15));
+        }
+        
+        /// <summary>
+        /// Filter on member when OR value Marital status do not match member
+        /// </summary>
+        public void ManageMemberSearchORFilterNotMatched()
+        {
+            #region Variable Declarations
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbSearchMaritalStatWindow.UIMaritalstatusComboBox;
+            WinButton uISearchButton = this.UISocialClubMembershipWindow.UISearchWindow.UISearchButton;
+            #endregion
+
+            // Select 'Single' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.ManageMemberSearchORFilterNotMatchedParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(51, 11));
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(51, 11));
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(44, 17));
+        }
+        
+        /// <summary>
+        /// If OR filter do not match value any member should retirn null member entries on search
+        /// </summary>
+        public void ManageMemberSearchORFilterMaritialStatusNoMatch()
+        {
+            #region Variable Declarations
+            WinCell uIItem72Cell = this.UISocialClubMembershipWindow.UIDataGridViewMembersWindow.UIDataGridViewTable.UIRow0Row1.UIItem72Cell;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of '72' cell equals ''
+            Assert.AreEqual(this.ManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues.UIItem72CellFriendlyName, uIItem72Cell.FriendlyName, "When search on OR filter and Marital status do not match member - should not retu" +
+                    "rn member entry ");
+        }
+        
+        /// <summary>
+        /// Select Refresh button after search
+        /// </summary>
+        public void ManageSelectFitlerRefresh()
+        {
+            #region Variable Declarations
+            WinButton uIRefreshButton = this.UISocialClubMembershipWindow.UIRefreshWindow.UIRefreshButton;
+            WinComboBox uICmbSearchOccupationComboBox = this.UISocialClubMembershipWindow.UICmbSearchOccupationWindow.UICmbSearchOccupationComboBox;
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbSearchMaritalStatWindow.UIMaritalstatusComboBox;
+            WinButton uISearchButton = this.UISocialClubMembershipWindow.UISearchWindow.UISearchButton;
+            #endregion
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(34, 12));
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(35, 16));
+
+            // Select 'Doctor' in 'cmbSearchOccupation' combo box
+            uICmbSearchOccupationComboBox.SelectedItem = this.ManageSelectFitlerRefreshParams.UICmbSearchOccupationComboBoxSelectedItem;
+
+            // Select 'Married' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.ManageSelectFitlerRefreshParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(36, 15));
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(72, 12));
+        }
+        
+        /// <summary>
+        /// Occupation field to clear after select refresh
+        /// </summary>
+        public void ManageRefreshFilterClearsOccupationField()
+        {
+            #region Variable Declarations
+            WinComboBox uICmbSearchOccupationComboBox = this.UISocialClubMembershipWindow.UICmbSearchOccupationWindow.UICmbSearchOccupationComboBox;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'cmbSearchOccupation' combo box equals ''
+            Assert.AreEqual(this.ManageRefreshFilterClearsOccupationFieldExpectedValues.UICmbSearchOccupationComboBoxFriendlyName, uICmbSearchOccupationComboBox.FriendlyName, "refresh should clear Occupation Field");
+        }
+        
+        /// <summary>
+        /// After search when Refresh button selected Marital status field to clear
+        /// </summary>
+        public void ManageRefreshFilterClearsMaritalStatusField()
+        {
+            #region Variable Declarations
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbSearchMaritalStatWindow.UIMaritalstatusComboBox;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'Marital status' combo box equals ''
+            Assert.AreEqual(this.ManageRefreshFilterClearsMaritalStatusFieldExpectedValues.UIMaritalstatusComboBoxFriendlyName, uIMaritalstatusComboBox.FriendlyName, "Select refresh after search filter should clear Marital status field");
+        }
+        
+        /// <summary>
+        /// Select no values for Occupation or Marital Status and search
+        /// </summary>
+        public void MemberNoFiterSearch()
+        {
+            #region Variable Declarations
+            WinButton uISearchButton = this.UISocialClubMembershipWindow.UISearchWindow.UISearchButton;
+            #endregion
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(44, 12));
+        }
+        
+        /// <summary>
+        /// Select search and refresh after clearing Occupation and Marital status ffilters
+        /// </summary>
+        public void MemberSearchAndRefresh()
+        {
+            #region Variable Declarations
+            WinButton uIRefreshButton = this.UISocialClubMembershipWindow.UIRefreshWindow.UIRefreshButton;
+            #endregion
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(55, 12));
+        }
+        
+        /// <summary>
+        /// Print Preview of existing member list
+        /// </summary>
+        public void ManageMemberSelectPrintPreview()
+        {
+            #region Variable Declarations
+            WinButton uIPrintpreviewButton = this.UISocialClubMembershipWindow.UIPrintpreviewWindow.UIPrintpreviewButton;
+            #endregion
+
+            // Click 'Print preview' button
+            Mouse.Click(uIPrintpreviewButton, new Point(27, 11));
+        }
+        
+        /// <summary>
+        /// When selecting print preview on member manage page - Print Preivew pop up should display to view print page
+        /// </summary>
+        public void CheckPrintPreviewDisplay()
+        {
+            #region Variable Declarations
+            WinTitleBar uIPrintpreviewTitleBar = this.UIPrintpreviewWindow.UIPrintpreviewTitleBar;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'Print preview' title bar equals 'Print preview'
+            Assert.AreEqual(this.CheckPrintPreviewDisplayExpectedValues.UIPrintpreviewTitleBarFriendlyName, uIPrintpreviewTitleBar.FriendlyName, "When seleting print preview assert that print preview pop up exist");
+        }
+        
+        /// <summary>
+        /// ClosePrintPreview
+        /// </summary>
+        public void ClosePrintPreview()
+        {
+            #region Variable Declarations
+            WinButton uICloseButton = this.UIPrintpreviewWindow.UIPrintpreviewTitleBar.UICloseButton;
+            #endregion
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(27, 7));
+        }
+        
+        /// <summary>
+        /// SelectPrintButton
+        /// </summary>
+        public void SelectPrintButton()
+        {
+            #region Variable Declarations
+            WinButton uIPrintButton = this.UISocialClubMembershipWindow.UIPrintWindow.UIPrintButton;
+            #endregion
+
+            // Click 'Print' button
+            Mouse.Click(uIPrintButton, new Point(53, 13));
+        }
+        
+        /// <summary>
+        /// Print modal should display whe select Print button
+        /// </summary>
+        public void ManageMemberPrintModalDisplay()
+        {
+            #region Variable Declarations
+            WinTitleBar uIPrintTitleBar = this.UIPrintWindow.UIPrintTitleBar;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'Print' title bar equals 'Print'
+            Assert.AreEqual(this.ManageMemberPrintModalDisplayExpectedValues.UIPrintTitleBarFriendlyName, uIPrintTitleBar.FriendlyName, "When select Print button the print pop up modal should display");
+        }
+        
+        /// <summary>
+        /// ManageMemberClosePrint
+        /// </summary>
+        public void ManageMemberClosePrint()
+        {
+            #region Variable Declarations
+            WinButton uIOKButton = this.UIPrintWindow.UIOKWindow.UIOKButton;
+            #endregion
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(35, 13));
+        }
+        
+        /// <summary>
+        /// ManageMemberSelectExport
+        /// </summary>
+        public void ManageMemberSelectExport()
+        {
+            #region Variable Declarations
+            WinButton uIExportButton = this.UISocialClubMembershipWindow.UIExportWindow.UIExportButton;
+            #endregion
+
+            // Click 'Export' button
+            Mouse.Click(uIExportButton, new Point(33, 20));
+        }
+        
+        /// <summary>
+        /// Selecitn export should display Excel sheet
+        /// </summary>
+        public void ManageMemberSelectExportExcelDisplay()
+        {
+            #region Variable Declarations
+            WinTitleBar uISheet1ExcelTitleBar = this.UISheet1ExcelWindow.UIItemWindow.UIRibbonPropertyPage.UISheet1ExcelTitleBar;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of '‪Sheet1‬ - Excel' title bar equals '‪Sheet1‬ - Excel'
+            Assert.AreEqual(this.ManageMemberSelectExportExcelDisplayExpectedValues.UISheet1ExcelTitleBarFriendlyName, uISheet1ExcelTitleBar.FriendlyName, "When selecting Export button on manage member page the excel sheet should display" +
+                    "");
+        }
+        
+        /// <summary>
+        /// SocialClubApplicationClose
+        /// </summary>
+        public void SocialClubApplicationClose()
+        {
+            #region Variable Declarations
+            WinButton uICloseButton = this.UISocialClubMembershipWindow.UISocialClubMembershipTitleBar.UICloseButton;
+            #endregion
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(28, 10));
+        }
+        
+        /// <summary>
+        /// RegistrationErrorDismiss
+        /// </summary>
+        public void RegistrationErrorDismiss()
+        {
+            #region Variable Declarations
+            WinButton uIOKButton = this.UIRegistrationerrorWindow.UIOKWindow.UIOKButton;
+            #endregion
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(35, 15));
+        }
+        
+        /// <summary>
+        /// Search on Manage Member Page should not return any results if fliter values blank
+        /// </summary>
+        public void MemberSearchNoValueFilterNoMemberResults()
+        {
+            #region Variable Declarations
+            WinCell uIAnaCell = this.UISocialClubMembershipWindow.UIDataGridViewMembersWindow.UIDataGridViewTable.UIRow0Row2.UIAnaCell;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'ana' cell is not equal to 'ana'
+            Assert.AreNotEqual(this.MemberSearchNoValueFilterNoMemberResultsExpectedValues.UIAnaCellFriendlyName, uIAnaCell.FriendlyName, "Whe Search and filter on blank values should not return any member entries");
+        }
+        
+        /// <summary>
+        /// CheckEntryExistFilterOnOR - Use 'CheckEntryExistFilterOnORExpectedValues' to pass parameters into this method.
+        /// </summary>
+        public void CheckEntryExistFilterOnOR()
+        {
+            #region Variable Declarations
+            WinCell uIAnaCell = this.UISocialClubMembershipWindow.UIDataGridViewMembersWindow.UIDataGridViewTable.UIRow0Row2.UIAnaCell;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'ana' cell equals 'ana'
+            Assert.AreEqual(this.CheckEntryExistFilterOnORExpectedValues.UIAnaCellFriendlyName, uIAnaCell.FriendlyName, "Search on filter OR should return member entry if filter values match member");
+        }
+        
+        /// <summary>
+        /// If member exist with both filtered values should return a entry in the member grid
+        /// </summary>
+        public void CheckEntryExistFilterOnAnd()
+        {
+            #region Variable Declarations
+            WinCell uIAnaCell = this.UISocialClubMembershipWindow.UIDataGridViewMembersWindow.UIDataGridViewTable.UIRow0Row2.UIAnaCell;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'ana' cell equals 'ana'
+            Assert.AreEqual(this.CheckEntryExistFilterOnAndExpectedValues.UIAnaCellFriendlyName, uIAnaCell.FriendlyName, "member entry should return if both filter search match existing member");
         }
         
         #region Properties
@@ -909,6 +1253,162 @@ namespace CodedUITestProject1
             }
         }
         
+        public virtual ManageMemebrSearchAndFilterParams ManageMemebrSearchAndFilterParams
+        {
+            get
+            {
+                if ((this.mManageMemebrSearchAndFilterParams == null))
+                {
+                    this.mManageMemebrSearchAndFilterParams = new ManageMemebrSearchAndFilterParams();
+                }
+                return this.mManageMemebrSearchAndFilterParams;
+            }
+        }
+        
+        public virtual ManageMemberSearchORFilterParams ManageMemberSearchORFilterParams
+        {
+            get
+            {
+                if ((this.mManageMemberSearchORFilterParams == null))
+                {
+                    this.mManageMemberSearchORFilterParams = new ManageMemberSearchORFilterParams();
+                }
+                return this.mManageMemberSearchORFilterParams;
+            }
+        }
+        
+        public virtual ManageMemberSearchORFilterNotMatchedParams ManageMemberSearchORFilterNotMatchedParams
+        {
+            get
+            {
+                if ((this.mManageMemberSearchORFilterNotMatchedParams == null))
+                {
+                    this.mManageMemberSearchORFilterNotMatchedParams = new ManageMemberSearchORFilterNotMatchedParams();
+                }
+                return this.mManageMemberSearchORFilterNotMatchedParams;
+            }
+        }
+        
+        public virtual ManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues ManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues
+        {
+            get
+            {
+                if ((this.mManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues == null))
+                {
+                    this.mManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues = new ManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues();
+                }
+                return this.mManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues;
+            }
+        }
+        
+        public virtual ManageSelectFitlerRefreshParams ManageSelectFitlerRefreshParams
+        {
+            get
+            {
+                if ((this.mManageSelectFitlerRefreshParams == null))
+                {
+                    this.mManageSelectFitlerRefreshParams = new ManageSelectFitlerRefreshParams();
+                }
+                return this.mManageSelectFitlerRefreshParams;
+            }
+        }
+        
+        public virtual ManageRefreshFilterClearsOccupationFieldExpectedValues ManageRefreshFilterClearsOccupationFieldExpectedValues
+        {
+            get
+            {
+                if ((this.mManageRefreshFilterClearsOccupationFieldExpectedValues == null))
+                {
+                    this.mManageRefreshFilterClearsOccupationFieldExpectedValues = new ManageRefreshFilterClearsOccupationFieldExpectedValues();
+                }
+                return this.mManageRefreshFilterClearsOccupationFieldExpectedValues;
+            }
+        }
+        
+        public virtual ManageRefreshFilterClearsMaritalStatusFieldExpectedValues ManageRefreshFilterClearsMaritalStatusFieldExpectedValues
+        {
+            get
+            {
+                if ((this.mManageRefreshFilterClearsMaritalStatusFieldExpectedValues == null))
+                {
+                    this.mManageRefreshFilterClearsMaritalStatusFieldExpectedValues = new ManageRefreshFilterClearsMaritalStatusFieldExpectedValues();
+                }
+                return this.mManageRefreshFilterClearsMaritalStatusFieldExpectedValues;
+            }
+        }
+        
+        public virtual CheckPrintPreviewDisplayExpectedValues CheckPrintPreviewDisplayExpectedValues
+        {
+            get
+            {
+                if ((this.mCheckPrintPreviewDisplayExpectedValues == null))
+                {
+                    this.mCheckPrintPreviewDisplayExpectedValues = new CheckPrintPreviewDisplayExpectedValues();
+                }
+                return this.mCheckPrintPreviewDisplayExpectedValues;
+            }
+        }
+        
+        public virtual ManageMemberPrintModalDisplayExpectedValues ManageMemberPrintModalDisplayExpectedValues
+        {
+            get
+            {
+                if ((this.mManageMemberPrintModalDisplayExpectedValues == null))
+                {
+                    this.mManageMemberPrintModalDisplayExpectedValues = new ManageMemberPrintModalDisplayExpectedValues();
+                }
+                return this.mManageMemberPrintModalDisplayExpectedValues;
+            }
+        }
+        
+        public virtual ManageMemberSelectExportExcelDisplayExpectedValues ManageMemberSelectExportExcelDisplayExpectedValues
+        {
+            get
+            {
+                if ((this.mManageMemberSelectExportExcelDisplayExpectedValues == null))
+                {
+                    this.mManageMemberSelectExportExcelDisplayExpectedValues = new ManageMemberSelectExportExcelDisplayExpectedValues();
+                }
+                return this.mManageMemberSelectExportExcelDisplayExpectedValues;
+            }
+        }
+        
+        public virtual MemberSearchNoValueFilterNoMemberResultsExpectedValues MemberSearchNoValueFilterNoMemberResultsExpectedValues
+        {
+            get
+            {
+                if ((this.mMemberSearchNoValueFilterNoMemberResultsExpectedValues == null))
+                {
+                    this.mMemberSearchNoValueFilterNoMemberResultsExpectedValues = new MemberSearchNoValueFilterNoMemberResultsExpectedValues();
+                }
+                return this.mMemberSearchNoValueFilterNoMemberResultsExpectedValues;
+            }
+        }
+        
+        public virtual CheckEntryExistFilterOnORExpectedValues CheckEntryExistFilterOnORExpectedValues
+        {
+            get
+            {
+                if ((this.mCheckEntryExistFilterOnORExpectedValues == null))
+                {
+                    this.mCheckEntryExistFilterOnORExpectedValues = new CheckEntryExistFilterOnORExpectedValues();
+                }
+                return this.mCheckEntryExistFilterOnORExpectedValues;
+            }
+        }
+        
+        public virtual CheckEntryExistFilterOnAndExpectedValues CheckEntryExistFilterOnAndExpectedValues
+        {
+            get
+            {
+                if ((this.mCheckEntryExistFilterOnAndExpectedValues == null))
+                {
+                    this.mCheckEntryExistFilterOnAndExpectedValues = new CheckEntryExistFilterOnAndExpectedValues();
+                }
+                return this.mCheckEntryExistFilterOnAndExpectedValues;
+            }
+        }
+        
         public UISocialclubLoginWindow UISocialclubLoginWindow
         {
             get
@@ -1028,6 +1528,42 @@ namespace CodedUITestProject1
                 return this.mUISocialclubLoginWindow1;
             }
         }
+        
+        public UIPrintpreviewWindow1 UIPrintpreviewWindow
+        {
+            get
+            {
+                if ((this.mUIPrintpreviewWindow == null))
+                {
+                    this.mUIPrintpreviewWindow = new UIPrintpreviewWindow1();
+                }
+                return this.mUIPrintpreviewWindow;
+            }
+        }
+        
+        public UIPrintWindow1 UIPrintWindow
+        {
+            get
+            {
+                if ((this.mUIPrintWindow == null))
+                {
+                    this.mUIPrintWindow = new UIPrintWindow1();
+                }
+                return this.mUIPrintWindow;
+            }
+        }
+        
+        public UISheet1ExcelWindow UISheet1ExcelWindow
+        {
+            get
+            {
+                if ((this.mUISheet1ExcelWindow == null))
+                {
+                    this.mUISheet1ExcelWindow = new UISheet1ExcelWindow();
+                }
+                return this.mUISheet1ExcelWindow;
+            }
+        }
         #endregion
         
         #region Fields
@@ -1069,6 +1605,32 @@ namespace CodedUITestProject1
         
         private ManageClearnameClearNameParams mManageClearnameClearNameParams;
         
+        private ManageMemebrSearchAndFilterParams mManageMemebrSearchAndFilterParams;
+        
+        private ManageMemberSearchORFilterParams mManageMemberSearchORFilterParams;
+        
+        private ManageMemberSearchORFilterNotMatchedParams mManageMemberSearchORFilterNotMatchedParams;
+        
+        private ManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues mManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues;
+        
+        private ManageSelectFitlerRefreshParams mManageSelectFitlerRefreshParams;
+        
+        private ManageRefreshFilterClearsOccupationFieldExpectedValues mManageRefreshFilterClearsOccupationFieldExpectedValues;
+        
+        private ManageRefreshFilterClearsMaritalStatusFieldExpectedValues mManageRefreshFilterClearsMaritalStatusFieldExpectedValues;
+        
+        private CheckPrintPreviewDisplayExpectedValues mCheckPrintPreviewDisplayExpectedValues;
+        
+        private ManageMemberPrintModalDisplayExpectedValues mManageMemberPrintModalDisplayExpectedValues;
+        
+        private ManageMemberSelectExportExcelDisplayExpectedValues mManageMemberSelectExportExcelDisplayExpectedValues;
+        
+        private MemberSearchNoValueFilterNoMemberResultsExpectedValues mMemberSearchNoValueFilterNoMemberResultsExpectedValues;
+        
+        private CheckEntryExistFilterOnORExpectedValues mCheckEntryExistFilterOnORExpectedValues;
+        
+        private CheckEntryExistFilterOnAndExpectedValues mCheckEntryExistFilterOnAndExpectedValues;
+        
         private UISocialclubLoginWindow mUISocialclubLoginWindow;
         
         private UISocialClubMembershipWindow mUISocialClubMembershipWindow;
@@ -1088,6 +1650,12 @@ namespace CodedUITestProject1
         private UIItemWindow11 mUIItemWindow1;
         
         private UISocialclubLoginWindow1 mUISocialclubLoginWindow1;
+        
+        private UIPrintpreviewWindow1 mUIPrintpreviewWindow;
+        
+        private UIPrintWindow1 mUIPrintWindow;
+        
+        private UISheet1ExcelWindow mUISheet1ExcelWindow;
         #endregion
     }
     
@@ -1797,6 +2365,221 @@ namespace CodedUITestProject1
         #endregion
     }
     
+    /// <summary>
+    /// Parameters to be passed into 'ManageMemebrSearchAndFilter'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageMemebrSearchAndFilterParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Select 'Doctor' in 'cmbSearchOccupation' combo box
+        /// </summary>
+        public string UICmbSearchOccupationComboBoxSelectedItem = "Doctor";
+        
+        /// <summary>
+        /// Select 'Married' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Married";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageMemberSearchORFilter'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageMemberSearchORFilterParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Select 'Doctor' in 'cmbSearchOccupation' combo box
+        /// </summary>
+        public string UICmbSearchOccupationComboBoxSelectedItem = "Doctor";
+        
+        /// <summary>
+        /// Select 'OR' in 'cmbOperand' combo box
+        /// </summary>
+        public string UICmbOperandComboBoxSelectedItem = "OR";
+        
+        /// <summary>
+        /// Select 'Married' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Married";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageMemberSearchORFilterNotMatched'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageMemberSearchORFilterNotMatchedParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Select 'Single' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Single";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageMemberSearchORFilterMaritialStatusNoMatch'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageMemberSearchORFilterMaritialStatusNoMatchExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of '72' cell equals ''
+        /// </summary>
+        public string UIItem72CellFriendlyName = "";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageSelectFitlerRefresh'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageSelectFitlerRefreshParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Select 'Doctor' in 'cmbSearchOccupation' combo box
+        /// </summary>
+        public string UICmbSearchOccupationComboBoxSelectedItem = "Doctor";
+        
+        /// <summary>
+        /// Select 'Married' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Married";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageRefreshFilterClearsOccupationField'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageRefreshFilterClearsOccupationFieldExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'cmbSearchOccupation' combo box equals ''
+        /// </summary>
+        public string UICmbSearchOccupationComboBoxFriendlyName = "";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageRefreshFilterClearsMaritalStatusField'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageRefreshFilterClearsMaritalStatusFieldExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'Marital status' combo box equals ''
+        /// </summary>
+        public string UIMaritalstatusComboBoxFriendlyName = "";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'CheckPrintPreviewDisplay'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class CheckPrintPreviewDisplayExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'Print preview' title bar equals 'Print preview'
+        /// </summary>
+        public string UIPrintpreviewTitleBarFriendlyName = "Print preview";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageMemberPrintModalDisplay'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageMemberPrintModalDisplayExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'Print' title bar equals 'Print'
+        /// </summary>
+        public string UIPrintTitleBarFriendlyName = "Print";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageMemberSelectExportExcelDisplay'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageMemberSelectExportExcelDisplayExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of '‪Sheet1‬ - Excel' title bar equals '‪Sheet1‬ - Excel'
+        /// </summary>
+        public string UISheet1ExcelTitleBarFriendlyName = "‪Sheet1‬ - Excel";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'MemberSearchNoValueFilterNoMemberResults'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class MemberSearchNoValueFilterNoMemberResultsExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'ana' cell is not equal to 'ana'
+        /// </summary>
+        public string UIAnaCellFriendlyName = "ana";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'CheckEntryExistFilterOnOR'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class CheckEntryExistFilterOnORExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'ana' cell equals 'ana'
+        /// </summary>
+        public string UIAnaCellFriendlyName = "ana";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'CheckEntryExistFilterOnAnd'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class CheckEntryExistFilterOnAndExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'ana' cell equals 'ana'
+        /// </summary>
+        public string UIAnaCellFriendlyName = "ana";
+        #endregion
+    }
+    
     [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
     public class UISocialclubLoginWindow : WinWindow
     {
@@ -2253,6 +3036,54 @@ namespace CodedUITestProject1
                 return this.mUIDeleteWindow;
             }
         }
+        
+        public UIPrintpreviewWindow UIPrintpreviewWindow
+        {
+            get
+            {
+                if ((this.mUIPrintpreviewWindow == null))
+                {
+                    this.mUIPrintpreviewWindow = new UIPrintpreviewWindow(this);
+                }
+                return this.mUIPrintpreviewWindow;
+            }
+        }
+        
+        public UIPrintWindow UIPrintWindow
+        {
+            get
+            {
+                if ((this.mUIPrintWindow == null))
+                {
+                    this.mUIPrintWindow = new UIPrintWindow(this);
+                }
+                return this.mUIPrintWindow;
+            }
+        }
+        
+        public UIExportWindow UIExportWindow
+        {
+            get
+            {
+                if ((this.mUIExportWindow == null))
+                {
+                    this.mUIExportWindow = new UIExportWindow(this);
+                }
+                return this.mUIExportWindow;
+            }
+        }
+        
+        public UISocialClubMembershipTitleBar UISocialClubMembershipTitleBar
+        {
+            get
+            {
+                if ((this.mUISocialClubMembershipTitleBar == null))
+                {
+                    this.mUISocialClubMembershipTitleBar = new UISocialClubMembershipTitleBar(this);
+                }
+                return this.mUISocialClubMembershipTitleBar;
+            }
+        }
         #endregion
         
         #region Fields
@@ -2301,6 +3132,14 @@ namespace CodedUITestProject1
         private UITxt2SalaryWindow mUITxt2SalaryWindow;
         
         private UIDeleteWindow mUIDeleteWindow;
+        
+        private UIPrintpreviewWindow mUIPrintpreviewWindow;
+        
+        private UIPrintWindow mUIPrintWindow;
+        
+        private UIExportWindow mUIExportWindow;
+        
+        private UISocialClubMembershipTitleBar mUISocialClubMembershipTitleBar;
         #endregion
     }
     
@@ -2926,6 +3765,42 @@ namespace CodedUITestProject1
                 return this.mUIRow0Row1;
             }
         }
+        
+        public UIRow0Row2 UIRow0Row2
+        {
+            get
+            {
+                if ((this.mUIRow0Row2 == null))
+                {
+                    this.mUIRow0Row2 = new UIRow0Row2(this);
+                }
+                return this.mUIRow0Row2;
+            }
+        }
+        
+        public UIRow0Row3 UIRow0Row3
+        {
+            get
+            {
+                if ((this.mUIRow0Row3 == null))
+                {
+                    this.mUIRow0Row3 = new UIRow0Row3(this);
+                }
+                return this.mUIRow0Row3;
+            }
+        }
+        
+        public UIRow0Row4 UIRow0Row4
+        {
+            get
+            {
+                if ((this.mUIRow0Row4 == null))
+                {
+                    this.mUIRow0Row4 = new UIRow0Row4(this);
+                }
+                return this.mUIRow0Row4;
+            }
+        }
         #endregion
         
         #region Fields
@@ -2950,6 +3825,12 @@ namespace CodedUITestProject1
         private UITopRowRow mUITopRowRow;
         
         private UIRow0Row1 mUIRow0Row1;
+        
+        private UIRow0Row2 mUIRow0Row2;
+        
+        private UIRow0Row3 mUIRow0Row3;
+        
+        private UIRow0Row4 mUIRow0Row4;
         #endregion
     }
     
@@ -3387,6 +4268,152 @@ namespace CodedUITestProject1
                 return this.mUIAnaCell;
             }
         }
+        
+        public WinCell UIItem72Cell
+        {
+            get
+            {
+                if ((this.mUIItem72Cell == null))
+                {
+                    this.mUIItem72Cell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIItem72Cell.SearchProperties[WinCell.PropertyNames.Value] = "72";
+                    this.mUIItem72Cell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIItem72Cell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIAnaCell;
+        
+        private WinCell mUIItem72Cell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow0Row2 : WinRow
+    {
+        
+        public UIRow0Row2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";ana;11/12/2011;Doctor;Married;Excellent;2000;1", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinRowHeader UIItemRowHeader
+        {
+            get
+            {
+                if ((this.mUIItemRowHeader == null))
+                {
+                    this.mUIItemRowHeader = new WinRowHeader(this);
+                    #region Search Criteria
+                    this.mUIItemRowHeader.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIItemRowHeader;
+            }
+        }
+        
+        public WinCell UIAnaCell
+        {
+            get
+            {
+                if ((this.mUIAnaCell == null))
+                {
+                    this.mUIAnaCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIAnaCell.SearchProperties[WinCell.PropertyNames.Value] = "ana";
+                    this.mUIAnaCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIAnaCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinRowHeader mUIItemRowHeader;
+        
+        private WinCell mUIAnaCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow0Row3 : WinRow
+    {
+        
+        public UIRow0Row3(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";ana;25/12/2012;Doctor;Married;Excellent;20000;1", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIAnaCell
+        {
+            get
+            {
+                if ((this.mUIAnaCell == null))
+                {
+                    this.mUIAnaCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIAnaCell.SearchProperties[WinCell.PropertyNames.Value] = "ana";
+                    this.mUIAnaCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIAnaCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIAnaCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow0Row4 : WinRow
+    {
+        
+        public UIRow0Row4(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";ana;25/01/2012;Doctor;Married;Excellent;2000;1", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIAnaCell
+        {
+            get
+            {
+                if ((this.mUIAnaCell == null))
+                {
+                    this.mUIAnaCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIAnaCell.SearchProperties[WinCell.PropertyNames.Value] = "ana";
+                    this.mUIAnaCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIAnaCell;
+            }
+        }
         #endregion
         
         #region Fields
@@ -3747,6 +4774,149 @@ namespace CodedUITestProject1
         
         #region Fields
         private WinButton mUIDeleteButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIPrintpreviewWindow : WinWindow
+    {
+        
+        public UIPrintpreviewWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnPrintPreview";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIPrintpreviewButton
+        {
+            get
+            {
+                if ((this.mUIPrintpreviewButton == null))
+                {
+                    this.mUIPrintpreviewButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIPrintpreviewButton.SearchProperties[WinButton.PropertyNames.Name] = "Print preview";
+                    this.mUIPrintpreviewButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIPrintpreviewButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIPrintpreviewButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIPrintWindow : WinWindow
+    {
+        
+        public UIPrintWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnPrint";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIPrintButton
+        {
+            get
+            {
+                if ((this.mUIPrintButton == null))
+                {
+                    this.mUIPrintButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIPrintButton.SearchProperties[WinButton.PropertyNames.Name] = "Print";
+                    this.mUIPrintButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIPrintButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIPrintButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIExportWindow : WinWindow
+    {
+        
+        public UIExportWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnExport";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIExportButton
+        {
+            get
+            {
+                if ((this.mUIExportButton == null))
+                {
+                    this.mUIExportButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIExportButton.SearchProperties[WinButton.PropertyNames.Name] = "Export";
+                    this.mUIExportButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIExportButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIExportButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UISocialClubMembershipTitleBar : WinTitleBar
+    {
+        
+        public UISocialClubMembershipTitleBar(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UICloseButton
+        {
+            get
+            {
+                if ((this.mUICloseButton == null))
+                {
+                    this.mUICloseButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUICloseButton.SearchProperties[WinButton.PropertyNames.Name] = "Close";
+                    this.mUICloseButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUICloseButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUICloseButton;
         #endregion
     }
     
@@ -4237,10 +5407,24 @@ namespace CodedUITestProject1
                 return this.mUIPleasecheckthefollowWindow;
             }
         }
+        
+        public UIOKWindow3 UIOKWindow
+        {
+            get
+            {
+                if ((this.mUIOKWindow == null))
+                {
+                    this.mUIOKWindow = new UIOKWindow3(this);
+                }
+                return this.mUIOKWindow;
+            }
+        }
         #endregion
         
         #region Fields
         private UIPleasecheckthefollowWindow mUIPleasecheckthefollowWindow;
+        
+        private UIOKWindow3 mUIOKWindow;
         #endregion
     }
     
@@ -4278,6 +5462,42 @@ namespace CodedUITestProject1
         
         #region Fields
         private WinText mUIPleasecheckthefollowText;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIOKWindow3 : WinWindow
+    {
+        
+        public UIOKWindow3(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlId] = "2";
+            this.WindowTitles.Add("Registration error");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIOKButton
+        {
+            get
+            {
+                if ((this.mUIOKButton == null))
+                {
+                    this.mUIOKButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIOKButton.SearchProperties[WinButton.PropertyNames.Name] = "OK";
+                    this.mUIOKButton.WindowTitles.Add("Registration error");
+                    #endregion
+                }
+                return this.mUIOKButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIOKButton;
         #endregion
     }
     
@@ -4505,6 +5725,260 @@ namespace CodedUITestProject1
         
         #region Fields
         private WinButton mUILoginButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIPrintpreviewWindow1 : WinWindow
+    {
+        
+        public UIPrintpreviewWindow1()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Print preview";
+            this.SearchProperties.Add(new PropertyExpression(WinWindow.PropertyNames.ClassName, "WindowsForms10.Window", PropertyExpressionOperator.Contains));
+            this.WindowTitles.Add("Print preview");
+            #endregion
+        }
+        
+        #region Properties
+        public UIPrintpreviewTitleBar UIPrintpreviewTitleBar
+        {
+            get
+            {
+                if ((this.mUIPrintpreviewTitleBar == null))
+                {
+                    this.mUIPrintpreviewTitleBar = new UIPrintpreviewTitleBar(this);
+                }
+                return this.mUIPrintpreviewTitleBar;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIPrintpreviewTitleBar mUIPrintpreviewTitleBar;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIPrintpreviewTitleBar : WinTitleBar
+    {
+        
+        public UIPrintpreviewTitleBar(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.WindowTitles.Add("Print preview");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UICloseButton
+        {
+            get
+            {
+                if ((this.mUICloseButton == null))
+                {
+                    this.mUICloseButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUICloseButton.SearchProperties[WinButton.PropertyNames.Name] = "Close";
+                    this.mUICloseButton.WindowTitles.Add("Print preview");
+                    #endregion
+                }
+                return this.mUICloseButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUICloseButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIPrintWindow1 : WinWindow
+    {
+        
+        public UIPrintWindow1()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Print";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32770";
+            this.WindowTitles.Add("Print");
+            #endregion
+        }
+        
+        #region Properties
+        public WinTitleBar UIPrintTitleBar
+        {
+            get
+            {
+                if ((this.mUIPrintTitleBar == null))
+                {
+                    this.mUIPrintTitleBar = new WinTitleBar(this);
+                    #region Search Criteria
+                    this.mUIPrintTitleBar.WindowTitles.Add("Print");
+                    #endregion
+                }
+                return this.mUIPrintTitleBar;
+            }
+        }
+        
+        public UIOKWindow4 UIOKWindow
+        {
+            get
+            {
+                if ((this.mUIOKWindow == null))
+                {
+                    this.mUIOKWindow = new UIOKWindow4(this);
+                }
+                return this.mUIOKWindow;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinTitleBar mUIPrintTitleBar;
+        
+        private UIOKWindow4 mUIOKWindow;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIOKWindow4 : WinWindow
+    {
+        
+        public UIOKWindow4(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlId] = "1";
+            this.WindowTitles.Add("Print");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIOKButton
+        {
+            get
+            {
+                if ((this.mUIOKButton == null))
+                {
+                    this.mUIOKButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIOKButton.SearchProperties[WinButton.PropertyNames.Name] = "OK";
+                    this.mUIOKButton.WindowTitles.Add("Print");
+                    #endregion
+                }
+                return this.mUIOKButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIOKButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UISheet1ExcelWindow : WinWindow
+    {
+        
+        public UISheet1ExcelWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Sheet1 - Excel";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "XLMAIN";
+            this.WindowTitles.Add("Sheet1 - Excel");
+            #endregion
+        }
+        
+        #region Properties
+        public UIItemWindow2 UIItemWindow
+        {
+            get
+            {
+                if ((this.mUIItemWindow == null))
+                {
+                    this.mUIItemWindow = new UIItemWindow2(this);
+                }
+                return this.mUIItemWindow;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIItemWindow2 mUIItemWindow;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemWindow2 : WinWindow
+    {
+        
+        public UIItemWindow2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.AccessibleName] = "Ribbon";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "NetUIHWND";
+            this.WindowTitles.Add("Sheet1 - Excel");
+            #endregion
+        }
+        
+        #region Properties
+        public UIRibbonPropertyPage UIRibbonPropertyPage
+        {
+            get
+            {
+                if ((this.mUIRibbonPropertyPage == null))
+                {
+                    this.mUIRibbonPropertyPage = new UIRibbonPropertyPage(this);
+                }
+                return this.mUIRibbonPropertyPage;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIRibbonPropertyPage mUIRibbonPropertyPage;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRibbonPropertyPage : WinControl
+    {
+        
+        public UIRibbonPropertyPage(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[UITestControl.PropertyNames.Name] = "Ribbon";
+            this.SearchProperties[UITestControl.PropertyNames.ControlType] = "PropertyPage";
+            this.WindowTitles.Add("Sheet1 - Excel");
+            #endregion
+        }
+        
+        #region Properties
+        public WinTitleBar UISheet1ExcelTitleBar
+        {
+            get
+            {
+                if ((this.mUISheet1ExcelTitleBar == null))
+                {
+                    this.mUISheet1ExcelTitleBar = new WinTitleBar(this);
+                    #region Search Criteria
+                    this.mUISheet1ExcelTitleBar.SearchProperties[WinTitleBar.PropertyNames.Name] = "‪Sheet1‬  -  Excel";
+                    this.mUISheet1ExcelTitleBar.WindowTitles.Add("Sheet1 - Excel");
+                    #endregion
+                }
+                return this.mUISheet1ExcelTitleBar;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinTitleBar mUISheet1ExcelTitleBar;
         #endregion
     }
 }
