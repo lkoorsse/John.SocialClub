@@ -6,23 +6,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CodedUITestProject1
 {
     /// <summary>
-    /// Summary description for LoginSuccessTest
+    /// Summary description for DeleteMember
     /// </summary>
     [CodedUITest]
-    public class LoginSuccessTest
+    public class DeleteMember
     {
-        public LoginSuccessTest()
-        {
-        }
-
-        
+        //public MemberDelete()
+        //{
+        //}
 
         [TestMethod]
-        public void LoginToRegister()
+        public void DeleteMemberClear()
         {
-            this.UIMap.LoginSuccess();
-            this.UIMap.AssertRegistrationPage();
-            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+
+           // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+            this.UIMap.DeleteMember();
+            this.UIMap.DeleteClearUpdateFields();
+            this.UIMap.UpdateFieldDisabled();
+
+
         }
 
         #region Additional test attributes

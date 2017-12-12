@@ -72,6 +72,11 @@ namespace CodedUITestProject1
         public void RegisterNew()
         {
             #region Variable Declarations
+            WinEdit uITxtUsernameEdit = this.UISocialclubLoginWindow.UITxtUsernameWindow.UITxtUsernameEdit;
+            WinEdit uITxtPasswordEdit = this.UISocialclubLoginWindow.UITxtPasswordWindow.UITxtPasswordEdit;
+            WinButton uILoginButton = this.UISocialclubLoginWindow.UILoginWindow.UILoginButton;
+            WinTabPage uINewRegistrationTabPage = this.UISocialClubMembershipWindow.UITabWindow.UINewRegistrationTabPage;
+            WinTabPage uIMemberTabPage = this.UISocialClubMembershipWindow.UITabControl2Window.UIMemberTabPage;
             WinEdit uITxtNameEdit = this.UISocialClubMembershipWindow.UITxtNameWindow.UITxtNameEdit;
             WinDateTimePicker uIDtDateOfBirthDateTimePicker = this.UISocialClubMembershipWindow.UIDtDateOfBirthWindow.UIDtDateOfBirthDateTimePicker;
             WinComboBox uICmbOccupationComboBox = this.UISocialClubMembershipWindow.UICmbOccupationWindow.UICmbOccupationComboBox;
@@ -82,13 +87,31 @@ namespace CodedUITestProject1
             WinButton uIRegisterButton = this.UISocialClubMembershipWindow.UIRegisterWindow.UIRegisterButton;
             #endregion
 
-            // Type 'Bobby' in 'txtName' text box
+            // Type 'demo' in 'txtUsername' text box
+            uITxtUsernameEdit.Text = this.RegisterNewParams.UITxtUsernameEditText;
+
+            // Type '{Tab}' in 'txtUsername' text box
+            Keyboard.SendKeys(uITxtUsernameEdit, this.RegisterNewParams.UITxtUsernameEditSendKeys, ModifierKeys.None);
+
+            // Type '********' in 'txtPassword' text box
+            Keyboard.SendKeys(uITxtPasswordEdit, this.RegisterNewParams.UITxtPasswordEditSendKeys, true);
+
+            // Type '{Enter}' in 'Login' button
+            Keyboard.SendKeys(uILoginButton, this.RegisterNewParams.UILoginButtonSendKeys, ModifierKeys.None);
+
+            // Type '{Tab}' in 'New Registration' tab
+            Keyboard.SendKeys(uINewRegistrationTabPage, this.RegisterNewParams.UINewRegistrationTabPageSendKeys, ModifierKeys.None);
+
+            // Type '{Tab}' in 'Member' tab
+            Keyboard.SendKeys(uIMemberTabPage, this.RegisterNewParams.UIMemberTabPageSendKeys, ModifierKeys.None);
+
+            // Type 'aana' in 'txtName' text box
             uITxtNameEdit.Text = this.RegisterNewParams.UITxtNameEditText;
 
             // Type '{Tab}' in 'txtName' text box
             Keyboard.SendKeys(uITxtNameEdit, this.RegisterNewParams.UITxtNameEditSendKeys, ModifierKeys.None);
 
-            // Select '25/12/2000' in 'dtDateOfBirth' date time picker
+            // Select '11/12/2012' in 'dtDateOfBirth' date time picker
             uIDtDateOfBirthDateTimePicker.DateTimeAsString = this.RegisterNewParams.UIDtDateOfBirthDateTimePickerDateTimeAsString;
 
             // Type '{Tab}' in 'dtDateOfBirth' date time picker
@@ -100,7 +123,7 @@ namespace CodedUITestProject1
             // Type '{Tab}' in 'cmbOccupation' combo box
             Keyboard.SendKeys(uICmbOccupationComboBox, this.RegisterNewParams.UICmbOccupationComboBoxSendKeys, ModifierKeys.None);
 
-            // Type '3000' in 'txtSalary' text box
+            // Type '2000' in 'txtSalary' text box
             uITxtSalaryEdit.Text = this.RegisterNewParams.UITxtSalaryEditText;
 
             // Type '{Tab}' in 'txtSalary' text box
@@ -118,7 +141,7 @@ namespace CodedUITestProject1
             // Type '{Tab}' in 'Marital status' combo box
             Keyboard.SendKeys(uIMaritalstatusComboBox, this.RegisterNewParams.UIMaritalstatusComboBoxSendKeys, ModifierKeys.None);
 
-            // Type '3' in 'txtNoOfChildren' text box
+            // Type '2' in 'txtNoOfChildren' text box
             uITxtNoOfChildrenEdit.Text = this.RegisterNewParams.UITxtNoOfChildrenEditText;
 
             // Type '{Tab}' in 'txtNoOfChildren' text box
@@ -129,16 +152,532 @@ namespace CodedUITestProject1
         }
         
         /// <summary>
-        /// new member registered
+        /// RegisterAndAmmendMember - Use 'RegisterAndAmmendMemberParams' to pass parameters into this method.
+        /// </summary>
+        public void RegisterAndAmmendMember()
+        {
+            #region Variable Declarations
+            WinEdit uITxtUsernameEdit = this.UISocialclubLoginWindow.UITxtUsernameWindow.UITxtUsernameEdit;
+            WinEdit uITxtPasswordEdit = this.UISocialclubLoginWindow.UITxtPasswordWindow.UITxtPasswordEdit;
+            WinButton uILoginButton = this.UISocialclubLoginWindow.UILoginWindow.UILoginButton;
+            WinEdit uITxtNameEdit = this.UISocialClubMembershipWindow.UITxtNameWindow.UITxtNameEdit;
+            WinDateTimePicker uIDtDateOfBirthDateTimePicker = this.UISocialClubMembershipWindow.UIDtDateOfBirthWindow.UIDtDateOfBirthDateTimePicker;
+            WinComboBox uICmbOccupationComboBox = this.UISocialClubMembershipWindow.UICmbOccupationWindow.UICmbOccupationComboBox;
+            WinEdit uITxtSalaryEdit = this.UISocialClubMembershipWindow.UITxtSalaryWindow.UITxtSalaryEdit;
+            WinComboBox uIOccupationComboBox = this.UISocialClubMembershipWindow.UICmbMaritalStatusWindow.UIOccupationComboBox;
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbHealthStatusWindow.UIMaritalstatusComboBox;
+            WinEdit uITxtNoOfChildrenEdit = this.UISocialClubMembershipWindow.UITxtNoOfChildrenWindow.UITxtNoOfChildrenEdit;
+            WinButton uIRegisterButton = this.UISocialClubMembershipWindow.UIRegisterWindow.UIRegisterButton;
+            WinButton uIOKButton = this.UIRegistrationSuccessfWindow.UIOKWindow.UIOKButton;
+            WinTabPage uISearchManageMembersTabPage = this.UISocialClubMembershipWindow.UITabWindow.UISearchManageMembersTabPage;
+            WinComboBox uICmbSearchOccupationComboBox = this.UISocialClubMembershipWindow.UICmbSearchOccupationWindow.UICmbSearchOccupationComboBox;
+            WinComboBox uIMaritalstatusComboBox1 = this.UISocialClubMembershipWindow.UICmbSearchMaritalStatWindow.UIMaritalstatusComboBox;
+            WinButton uISearchButton = this.UISocialClubMembershipWindow.UISearchWindow.UISearchButton;
+            WinRowHeader uIItemRowHeader = this.UISocialClubMembershipWindow.UIDataGridViewMembersWindow.UIDataGridViewTable.UIRow3Row2.UIItemRowHeader;
+            #endregion
+
+            // Type 'demo' in 'txtUsername' text box
+            uITxtUsernameEdit.Text = this.RegisterAndAmmendMemberParams.UITxtUsernameEditText;
+
+            // Type '{Tab}' in 'txtUsername' text box
+            Keyboard.SendKeys(uITxtUsernameEdit, this.RegisterAndAmmendMemberParams.UITxtUsernameEditSendKeys, ModifierKeys.None);
+
+            // Type '********' in 'txtPassword' text box
+            Keyboard.SendKeys(uITxtPasswordEdit, this.RegisterAndAmmendMemberParams.UITxtPasswordEditSendKeys, true);
+
+            // Type '{Enter}' in 'Login' button
+            Keyboard.SendKeys(uILoginButton, this.RegisterAndAmmendMemberParams.UILoginButtonSendKeys, ModifierKeys.None);
+
+            // Type 'blib' in 'txtName' text box
+            uITxtNameEdit.Text = this.RegisterAndAmmendMemberParams.UITxtNameEditText;
+
+            // Type '{Tab}' in 'txtName' text box
+            Keyboard.SendKeys(uITxtNameEdit, this.RegisterAndAmmendMemberParams.UITxtNameEditSendKeys, ModifierKeys.None);
+
+            // Select '11/12/2012' in 'dtDateOfBirth' date time picker
+            uIDtDateOfBirthDateTimePicker.DateTimeAsString = this.RegisterAndAmmendMemberParams.UIDtDateOfBirthDateTimePickerDateTimeAsString;
+
+            // Type '{Tab}' in 'dtDateOfBirth' date time picker
+            Keyboard.SendKeys(uIDtDateOfBirthDateTimePicker, this.RegisterAndAmmendMemberParams.UIDtDateOfBirthDateTimePickerSendKeys, ModifierKeys.None);
+
+            // Select 'Professor' in 'cmbOccupation' combo box
+            uICmbOccupationComboBox.SelectedItem = this.RegisterAndAmmendMemberParams.UICmbOccupationComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'cmbOccupation' combo box
+            Keyboard.SendKeys(uICmbOccupationComboBox, this.RegisterAndAmmendMemberParams.UICmbOccupationComboBoxSendKeys, ModifierKeys.None);
+
+            // Type '11' in 'txtSalary' text box
+            uITxtSalaryEdit.Text = this.RegisterAndAmmendMemberParams.UITxtSalaryEditText;
+
+            // Type '{Tab}' in 'txtSalary' text box
+            Keyboard.SendKeys(uITxtSalaryEdit, this.RegisterAndAmmendMemberParams.UITxtSalaryEditSendKeys, ModifierKeys.None);
+
+            // Select 'Married' in 'Occupation' combo box
+            uIOccupationComboBox.SelectedItem = this.RegisterAndAmmendMemberParams.UIOccupationComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'Occupation' combo box
+            Keyboard.SendKeys(uIOccupationComboBox, this.RegisterAndAmmendMemberParams.UIOccupationComboBoxSendKeys, ModifierKeys.None);
+
+            // Select 'Excellent' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.RegisterAndAmmendMemberParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'Marital status' combo box
+            Keyboard.SendKeys(uIMaritalstatusComboBox, this.RegisterAndAmmendMemberParams.UIMaritalstatusComboBoxSendKeys, ModifierKeys.None);
+
+            // Type '4' in 'txtNoOfChildren' text box
+            uITxtNoOfChildrenEdit.Text = this.RegisterAndAmmendMemberParams.UITxtNoOfChildrenEditText;
+
+            // Type '{Tab}' in 'txtNoOfChildren' text box
+            Keyboard.SendKeys(uITxtNoOfChildrenEdit, this.RegisterAndAmmendMemberParams.UITxtNoOfChildrenEditSendKeys, ModifierKeys.None);
+
+            // Type '{Enter}' in 'Register' button
+            Keyboard.SendKeys(uIRegisterButton, this.RegisterAndAmmendMemberParams.UIRegisterButtonSendKeys, ModifierKeys.None);
+
+            // Type '{Enter}' in 'OK' button
+            Keyboard.SendKeys(uIOKButton, this.RegisterAndAmmendMemberParams.UIOKButtonSendKeys, ModifierKeys.None);
+
+            // Click 'Search / Manage Members' tab
+            Mouse.Click(uISearchManageMembersTabPage, new Point(52, 12));
+
+            // Select 'Engineer' in 'cmbSearchOccupation' combo box
+            uICmbSearchOccupationComboBox.SelectedItem = this.RegisterAndAmmendMemberParams.UICmbSearchOccupationComboBoxSelectedItem;
+
+            // Select 'Married' in 'Marital status' combo box
+            uIMaritalstatusComboBox1.SelectedItem = this.RegisterAndAmmendMemberParams.UIMaritalstatusComboBoxSelectedItem1;
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(56, 14));
+
+            // Select 'Professor' in 'cmbSearchOccupation' combo box
+            uICmbSearchOccupationComboBox.SelectedItem = this.RegisterAndAmmendMemberParams.UICmbSearchOccupationComboBoxSelectedItem1;
+
+            // Click 'Search' button
+            Mouse.Click(uISearchButton, new Point(66, 8));
+
+            // Type '{Down}' in 'Search' button
+            Keyboard.SendKeys(uISearchButton, this.RegisterAndAmmendMemberParams.UISearchButtonSendKeys, ModifierKeys.None);
+
+            // Click row header
+            Mouse.Click(uIItemRowHeader, new Point(18, 11));
+        }
+        
+        /// <summary>
+        /// update existing member health status from excellent to good
+        /// </summary>
+        public void UpdateMember()
+        {
+            #region Variable Declarations
+            WinTabPage uISearchManageMembersTabPage = this.UISocialClubMembershipWindow.UITabWindow.UISearchManageMembersTabPage;
+            WinButton uIRefreshButton = this.UISocialClubMembershipWindow.UIRefreshWindow.UIRefreshButton;
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmb2HealthStatusWindow.UIMaritalstatusComboBox;
+            WinListItem uIGoodListItem = this.UIItemWindow.UIMaritalstatusList.UIGoodListItem;
+            WinEdit uITxt2NoOfChildrenEdit = this.UISocialClubMembershipWindow.UITxt2NoOfChildrenWindow.UITxt2NoOfChildrenEdit;
+            WinButton uIUpdateButton = this.UISocialClubMembershipWindow.UIUpdateWindow.UIUpdateButton;
+            #endregion
+
+            // Click 'Search / Manage Members' tab
+            Mouse.Click(uISearchManageMembersTabPage, new Point(33, 11));
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(48, 13));
+
+            // Select 'Good' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.UpdateMemberParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'Good' list item
+            Keyboard.SendKeys(uIGoodListItem, this.UpdateMemberParams.UIGoodListItemSendKeys, ModifierKeys.None);
+
+            // Type '{Tab}' in 'txt2NoOfChildren' text box
+            Keyboard.SendKeys(uITxt2NoOfChildrenEdit, this.UpdateMemberParams.UITxt2NoOfChildrenEditSendKeys, ModifierKeys.None);
+
+            // Click 'Update' button
+            Mouse.Click(uIUpdateButton, new Point(50, 8));
+        }
+        
+        /// <summary>
+        /// RegistrationSuccess - Use 'RegistrationSuccessExpectedValues' to pass parameters into this method.
         /// </summary>
         public void RegistrationSuccess()
         {
             #region Variable Declarations
-            WinText uINewmemberregisteredsText = this.UIRegistrationSuccessfWindow.UINewmemberregisteredsWindow.UINewmemberregisteredsText;
+            WinButton uIOKButton = this.UIRegistrationSuccessfWindow.UIOKWindow.UIOKButton;
             #endregion
 
-            // Verify that the 'Name' property of 'New member registered successfully!' label equals 'New member registered successfully!'
-            Assert.AreEqual(this.RegistrationSuccessExpectedValues.UINewmemberregisteredsTextName, uINewmemberregisteredsText.Name, "new registration unsuccessful");
+            // Verify that the 'Name' property of 'OK' button equals 'OK'
+            Assert.AreEqual(this.RegistrationSuccessExpectedValues.UIOKButtonName, uIOKButton.Name, "Registration failed");
+        }
+        
+        /// <summary>
+        /// CheckHealthStatusUpdated - Use 'CheckHealthStatusUpdatedExpectedValues' to pass parameters into this method.
+        /// </summary>
+        public void CheckHealthStatusUpdated()
+        {
+            #region Variable Declarations
+            WinButton uIOKButton = this.UIUpdatesuccessfullWindow.UIOKWindow.UIOKButton;
+            #endregion
+
+            // Verify that the 'Name' property of 'OK' button equals 'OK'
+            Assert.AreEqual(this.CheckHealthStatusUpdatedExpectedValues.UIOKButtonName, uIOKButton.Name, "member health status failed");
+        }
+        
+        /// <summary>
+        /// new registration for check and update success
+        /// </summary>
+        public void NewRegistrationForCheckEntry()
+        {
+            #region Variable Declarations
+            WinEdit uITxtNameEdit = this.UISocialClubMembershipWindow.UITxtNameWindow.UITxtNameEdit;
+            WinDateTimePicker uIDtDateOfBirthDateTimePicker = this.UISocialClubMembershipWindow.UIDtDateOfBirthWindow.UIDtDateOfBirthDateTimePicker;
+            WinComboBox uICmbOccupationComboBox = this.UISocialClubMembershipWindow.UICmbOccupationWindow.UICmbOccupationComboBox;
+            WinEdit uITxtSalaryEdit = this.UISocialClubMembershipWindow.UITxtSalaryWindow.UITxtSalaryEdit;
+            WinComboBox uIOccupationComboBox = this.UISocialClubMembershipWindow.UICmbMaritalStatusWindow.UIOccupationComboBox;
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbHealthStatusWindow.UIMaritalstatusComboBox;
+            WinEdit uITxtNoOfChildrenEdit = this.UISocialClubMembershipWindow.UITxtNoOfChildrenWindow.UITxtNoOfChildrenEdit;
+            WinButton uIRegisterButton = this.UISocialClubMembershipWindow.UIRegisterWindow.UIRegisterButton;
+            WinButton uIOKButton = this.UIRegistrationSuccessfWindow.UIOKWindow.UIOKButton;
+            WinTabPage uISearchManageMembersTabPage = this.UISocialClubMembershipWindow.UITabWindow.UISearchManageMembersTabPage;
+            #endregion
+
+            // Type 'ana' in 'txtName' text box
+            uITxtNameEdit.Text = this.NewRegistrationForCheckEntryParams.UITxtNameEditText;
+
+            // Type '{Tab}' in 'txtName' text box
+            Keyboard.SendKeys(uITxtNameEdit, this.NewRegistrationForCheckEntryParams.UITxtNameEditSendKeys, ModifierKeys.None);
+
+            // Select '11/12/2012' in 'dtDateOfBirth' date time picker
+            uIDtDateOfBirthDateTimePicker.DateTimeAsString = this.NewRegistrationForCheckEntryParams.UIDtDateOfBirthDateTimePickerDateTimeAsString;
+
+            // Type '{Tab}' in 'dtDateOfBirth' date time picker
+            Keyboard.SendKeys(uIDtDateOfBirthDateTimePicker, this.NewRegistrationForCheckEntryParams.UIDtDateOfBirthDateTimePickerSendKeys, ModifierKeys.None);
+
+            // Select 'Doctor' in 'cmbOccupation' combo box
+            uICmbOccupationComboBox.SelectedItem = this.NewRegistrationForCheckEntryParams.UICmbOccupationComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'cmbOccupation' combo box
+            Keyboard.SendKeys(uICmbOccupationComboBox, this.NewRegistrationForCheckEntryParams.UICmbOccupationComboBoxSendKeys, ModifierKeys.None);
+
+            // Type '2000' in 'txtSalary' text box
+            uITxtSalaryEdit.Text = this.NewRegistrationForCheckEntryParams.UITxtSalaryEditText;
+
+            // Type '{Tab}' in 'txtSalary' text box
+            Keyboard.SendKeys(uITxtSalaryEdit, this.NewRegistrationForCheckEntryParams.UITxtSalaryEditSendKeys, ModifierKeys.None);
+
+            // Select 'Married' in 'Occupation' combo box
+            uIOccupationComboBox.SelectedItem = this.NewRegistrationForCheckEntryParams.UIOccupationComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'Occupation' combo box
+            Keyboard.SendKeys(uIOccupationComboBox, this.NewRegistrationForCheckEntryParams.UIOccupationComboBoxSendKeys, ModifierKeys.None);
+
+            // Select 'Excellent' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.NewRegistrationForCheckEntryParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'Marital status' combo box
+            Keyboard.SendKeys(uIMaritalstatusComboBox, this.NewRegistrationForCheckEntryParams.UIMaritalstatusComboBoxSendKeys, ModifierKeys.None);
+
+            // Type '1' in 'txtNoOfChildren' text box
+            uITxtNoOfChildrenEdit.Text = this.NewRegistrationForCheckEntryParams.UITxtNoOfChildrenEditText;
+
+            // Type '{Tab}' in 'txtNoOfChildren' text box
+            Keyboard.SendKeys(uITxtNoOfChildrenEdit, this.NewRegistrationForCheckEntryParams.UITxtNoOfChildrenEditSendKeys, ModifierKeys.None);
+
+            // Type '{Enter}' in 'Register' button
+            Keyboard.SendKeys(uIRegisterButton, this.NewRegistrationForCheckEntryParams.UIRegisterButtonSendKeys, ModifierKeys.None);
+
+            // Type '{Enter}' in 'OK' button
+            Keyboard.SendKeys(uIOKButton, this.NewRegistrationForCheckEntryParams.UIOKButtonSendKeys, ModifierKeys.None);
+
+            // Click 'Search / Manage Members' tab
+            Mouse.Click(uISearchManageMembersTabPage, new Point(75, 10));
+        }
+        
+        /// <summary>
+        /// check that new member entry in grid display
+        /// </summary>
+        public void NewEntryCheckManageList()
+        {
+            #region Variable Declarations
+            WinCell uIAnaCell = this.UISocialClubMembershipWindow.UIDataGridViewMembersWindow.UIDataGridViewTable.UIRow0Row1.UIAnaCell;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'ana' cell equals 'ana'
+            Assert.AreEqual(this.NewEntryCheckManageListExpectedValues.UIAnaCellFriendlyName, uIAnaCell.FriendlyName, "new entry not inserted on manage memebr grid");
+        }
+        
+        /// <summary>
+        /// ammend no of children value
+        /// </summary>
+        public void UpdateNewMemberNoChildren()
+        {
+            #region Variable Declarations
+            WinEdit uITxt2NoOfChildrenEdit = this.UISocialClubMembershipWindow.UITxt2NoOfChildrenWindow.UITxt2NoOfChildrenEdit;
+            WinButton uIUpdateButton = this.UISocialClubMembershipWindow.UIUpdateWindow.UIUpdateButton;
+            #endregion
+
+            // Type '2' in 'txt2NoOfChildren' text box
+            uITxt2NoOfChildrenEdit.Text = this.UpdateNewMemberNoChildrenParams.UITxt2NoOfChildrenEditText;
+
+            // Click 'Update' button
+            Mouse.Click(uIUpdateButton, new Point(27, 14));
+        }
+        
+        /// <summary>
+        /// ammend new member salary
+        /// </summary>
+        public void UpdateMemberSalary()
+        {
+            #region Variable Declarations
+            WinButton uIOKButton = this.UIUpdatesuccessfullWindow.UIOKWindow.UIOKButton;
+            WinEdit uITxt2SalaryEdit = this.UISocialClubMembershipWindow.UITxt2SalaryWindow.UITxt2SalaryEdit;
+            WinButton uIUpdateButton = this.UISocialClubMembershipWindow.UIUpdateWindow.UIUpdateButton;
+            #endregion
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(35, 10));
+
+            // Type '2' in 'txt2Salary' text box
+            uITxt2SalaryEdit.Text = this.UpdateMemberSalaryParams.UITxt2SalaryEditText;
+
+            // Click 'Update' button
+            Mouse.Click(uIUpdateButton, new Point(43, 12));
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(18, 15));
+        }
+        
+        /// <summary>
+        /// Salary value updated
+        /// </summary>
+        public void NewMemberSalaryUpdateCheck()
+        {
+            #region Variable Declarations
+            WinEdit uITxt2SalaryEdit = this.UISocialClubMembershipWindow.UITxt2SalaryWindow.UITxt2SalaryEdit;
+            #endregion
+
+            // Verify that the 'Text' property of 'txt2Salary' text box equals '2'
+            Assert.AreEqual(this.NewMemberSalaryUpdateCheckExpectedValues.UITxt2SalaryEditText, uITxt2SalaryEdit.Text, "salary update failed");
+        }
+        
+        /// <summary>
+        /// delete new member entry
+        /// </summary>
+        public void DeleteNewMember()
+        {
+            #region Variable Declarations
+            WinButton uIDeleteButton = this.UISocialClubMembershipWindow.UIDeleteWindow.UIDeleteButton;
+            WinButton uIOKButton = this.UIDeletesuccessfullWindow.UIOKWindow.UIOKButton;
+            #endregion
+
+            // Click 'Delete' button
+            Mouse.Click(uIDeleteButton, new Point(29, 13));
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(50, 12));
+        }
+        
+        /// <summary>
+        /// For delete action update section fields should clear
+        /// </summary>
+        public void NewMemberDeleteClearUpdateFields()
+        {
+            #region Variable Declarations
+            WinEdit uITxt2NameEdit = this.UISocialClubMembershipWindow.UITxt2NameWindow.UITxt2NameEdit;
+            #endregion
+
+            // Verify that the 'Text' property of 'txt2Name' text box is not equal to 'ana'
+            Assert.AreNotEqual(this.NewMemberDeleteClearUpdateFieldsExpectedValues.UITxt2NameEditText, uITxt2NameEdit.Text, "new member deleted name text display on name field in update section");
+        }
+        
+        /// <summary>
+        /// Select register with no mandatory items
+        /// </summary>
+        public void SelectRegisterNoMandatoryItemsCompleted()
+        {
+            #region Variable Declarations
+            WinButton uIRegisterButton = this.UISocialClubMembershipWindow.UIRegisterWindow.UIRegisterButton;
+            #endregion
+
+            // Click 'Register' button
+            Mouse.Click(uIRegisterButton, new Point(51, 13));
+        }
+        
+        /// <summary>
+        /// Error display when all mandatory items blank
+        /// </summary>
+        public void AssertRegistrationError()
+        {
+            #region Variable Declarations
+            WinText uIPleasecheckthefollowText = this.UIRegistrationerrorWindow.UIPleasecheckthefollowWindow.UIPleasecheckthefollowText;
+            #endregion
+
+            // Verify that the 'Name' property of 'Please check the following. Name is required. Plea...' label equals 'Please check the following.Name is required.Please select a occupation.Please select marital status.Please select health status.'
+            Assert.AreEqual(this.AssertRegistrationErrorExpectedValues.UIPleasecheckthefollowTextName, uIPleasecheckthefollowText.Name, "If no mandatory items completed when select register - no expected message prompt" +
+                    " displayed");
+        }
+        
+        /// <summary>
+        /// when select today on date control
+        /// </summary>
+        public void RegistrationFormDateControlSelectToday()
+        {
+            #region Variable Declarations
+            WinDateTimePicker uIDtDateOfBirthDateTimePicker = this.UISocialClubMembershipWindow.UIDtDateOfBirthWindow.UIDtDateOfBirthDateTimePicker;
+            WinButton uIItemButton = this.UIItemWindow1.UIDesktopCalendar.UIItemButton;
+            #endregion
+
+            // Select '28/11/2012' in 'dtDateOfBirth' date time picker
+            uIDtDateOfBirthDateTimePicker.DateTimeAsString = this.RegistrationFormDateControlSelectTodayParams.UIDtDateOfBirthDateTimePickerDateTimeAsString;
+
+            // Select '28/11/2012' in 'dtDateOfBirth' date time picker
+            uIDtDateOfBirthDateTimePicker.DateTimeAsString = this.RegistrationFormDateControlSelectTodayParams.UIDtDateOfBirthDateTimePickerDateTimeAsString1;
+
+            // Click button
+            Mouse.Click(uIItemButton, new Point(11, 9));
+        }
+        
+        /// <summary>
+        /// DeleteMember - Use 'DeleteMemberParams' to pass parameters into this method.
+        /// </summary>
+        public void DeleteMember()
+        {
+            #region Variable Declarations
+            WinEdit uITxtUsernameEdit = this.UISocialclubLoginWindow1.UITxtUsernameWindow.UITxtUsernameEdit;
+            WinEdit uITxtPasswordEdit = this.UISocialclubLoginWindow1.UITxtPasswordWindow.UITxtPasswordEdit;
+            WinButton uILoginButton = this.UISocialclubLoginWindow1.UILoginWindow.UILoginButton;
+            WinEdit uITxtNameEdit = this.UISocialClubMembershipWindow.UITxtNameWindow.UITxtNameEdit;
+            WinDateTimePicker uIDtDateOfBirthDateTimePicker = this.UISocialClubMembershipWindow.UIDtDateOfBirthWindow.UIDtDateOfBirthDateTimePicker;
+            WinComboBox uICmbOccupationComboBox = this.UISocialClubMembershipWindow.UICmbOccupationWindow.UICmbOccupationComboBox;
+            WinEdit uITxtSalaryEdit = this.UISocialClubMembershipWindow.UITxtSalaryWindow.UITxtSalaryEdit;
+            WinComboBox uIOccupationComboBox = this.UISocialClubMembershipWindow.UICmbMaritalStatusWindow.UIOccupationComboBox;
+            WinComboBox uIMaritalstatusComboBox = this.UISocialClubMembershipWindow.UICmbHealthStatusWindow.UIMaritalstatusComboBox;
+            WinEdit uITxtNoOfChildrenEdit = this.UISocialClubMembershipWindow.UITxtNoOfChildrenWindow.UITxtNoOfChildrenEdit;
+            WinButton uIRegisterButton = this.UISocialClubMembershipWindow.UIRegisterWindow.UIRegisterButton;
+            WinButton uIOKButton = this.UIRegistrationSuccessfWindow.UIOKWindow.UIOKButton;
+            WinTabPage uISearchManageMembersTabPage = this.UISocialClubMembershipWindow.UITabWindow.UISearchManageMembersTabPage;
+            WinButton uIDeleteButton = this.UISocialClubMembershipWindow.UIDeleteWindow.UIDeleteButton;
+            WinButton uIOKButton1 = this.UIDeletesuccessfullWindow.UIOKWindow.UIOKButton;
+            WinButton uIRefreshButton = this.UISocialClubMembershipWindow.UIRefreshWindow.UIRefreshButton;
+            #endregion
+
+            // Type 'demo' in 'txtUsername' text box
+            uITxtUsernameEdit.Text = this.DeleteMemberParams.UITxtUsernameEditText;
+
+            // Type '{Tab}' in 'txtUsername' text box
+            Keyboard.SendKeys(uITxtUsernameEdit, this.DeleteMemberParams.UITxtUsernameEditSendKeys, ModifierKeys.None);
+
+            // Type '********' in 'txtPassword' text box
+            Keyboard.SendKeys(uITxtPasswordEdit, this.DeleteMemberParams.UITxtPasswordEditSendKeys, true);
+
+            // Type '{Tab}' in 'Login' button
+            Keyboard.SendKeys(uILoginButton, this.DeleteMemberParams.UILoginButtonSendKeys, ModifierKeys.None);
+
+            // Type '{Tab}' in 'txtUsername' text box
+            Keyboard.SendKeys(uITxtUsernameEdit, this.DeleteMemberParams.UITxtUsernameEditSendKeys1, ModifierKeys.None);
+
+            // Type '{Tab}' in 'txtPassword' text box
+            Keyboard.SendKeys(uITxtPasswordEdit, this.DeleteMemberParams.UITxtPasswordEditSendKeys1, ModifierKeys.None);
+
+            // Type '{Enter}' in 'Login' button
+            Keyboard.SendKeys(uILoginButton, this.DeleteMemberParams.UILoginButtonSendKeys1, ModifierKeys.None);
+
+            // Type 'blib' in 'txtName' text box
+            uITxtNameEdit.Text = this.DeleteMemberParams.UITxtNameEditText;
+
+            // Type '{Tab}' in 'txtName' text box
+            Keyboard.SendKeys(uITxtNameEdit, this.DeleteMemberParams.UITxtNameEditSendKeys, ModifierKeys.None);
+
+            // Type '{Tab}' in 'dtDateOfBirth' date time picker
+            Keyboard.SendKeys(uIDtDateOfBirthDateTimePicker, this.DeleteMemberParams.UIDtDateOfBirthDateTimePickerSendKeys, ModifierKeys.None);
+
+            // Select 'Doctor' in 'cmbOccupation' combo box
+            uICmbOccupationComboBox.SelectedItem = this.DeleteMemberParams.UICmbOccupationComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'cmbOccupation' combo box
+            Keyboard.SendKeys(uICmbOccupationComboBox, this.DeleteMemberParams.UICmbOccupationComboBoxSendKeys, ModifierKeys.None);
+
+            // Type '1000' in 'txtSalary' text box
+            uITxtSalaryEdit.Text = this.DeleteMemberParams.UITxtSalaryEditText;
+
+            // Type '{Tab}' in 'txtSalary' text box
+            Keyboard.SendKeys(uITxtSalaryEdit, this.DeleteMemberParams.UITxtSalaryEditSendKeys, ModifierKeys.None);
+
+            // Select 'Married' in 'Occupation' combo box
+            uIOccupationComboBox.SelectedItem = this.DeleteMemberParams.UIOccupationComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'Occupation' combo box
+            Keyboard.SendKeys(uIOccupationComboBox, this.DeleteMemberParams.UIOccupationComboBoxSendKeys, ModifierKeys.None);
+
+            // Select 'Excellent' in 'Marital status' combo box
+            uIMaritalstatusComboBox.SelectedItem = this.DeleteMemberParams.UIMaritalstatusComboBoxSelectedItem;
+
+            // Type '{Tab}' in 'Marital status' combo box
+            Keyboard.SendKeys(uIMaritalstatusComboBox, this.DeleteMemberParams.UIMaritalstatusComboBoxSendKeys, ModifierKeys.None);
+
+            // Type '1' in 'txtNoOfChildren' text box
+            uITxtNoOfChildrenEdit.Text = this.DeleteMemberParams.UITxtNoOfChildrenEditText;
+
+            // Type '{Tab}' in 'txtNoOfChildren' text box
+            Keyboard.SendKeys(uITxtNoOfChildrenEdit, this.DeleteMemberParams.UITxtNoOfChildrenEditSendKeys, ModifierKeys.None);
+
+            // Type '{Enter}' in 'Register' button
+            Keyboard.SendKeys(uIRegisterButton, this.DeleteMemberParams.UIRegisterButtonSendKeys, ModifierKeys.None);
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(55, 10));
+
+            // Click 'Search / Manage Members' tab
+            Mouse.Click(uISearchManageMembersTabPage, new Point(112, 4));
+
+            // Click 'Delete' button
+            Mouse.Click(uIDeleteButton, new Point(25, 10));
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton1, new Point(41, 21));
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(51, 17));
+        }
+        
+        /// <summary>
+        /// DeleteClearUpdateFields - Use 'DeleteClearUpdateFieldsExpectedValues' to pass parameters into this method.
+        /// </summary>
+        public void DeleteClearUpdateFields()
+        {
+            #region Variable Declarations
+            WinEdit uITxt2NameEdit = this.UISocialClubMembershipWindow.UITxt2NameWindow.UITxt2NameEdit;
+            #endregion
+
+            // Verify that the 'FriendlyName' property of 'txt2Name' text box equals ''
+            Assert.AreEqual(this.DeleteClearUpdateFieldsExpectedValues.UITxt2NameEditFriendlyName, uITxt2NameEdit.FriendlyName, "Update fields not cleared after delete member");
+        }
+        
+        /// <summary>
+        /// UpdateFieldRemainsEnabled
+        /// </summary>
+        public void UpdateFieldDisabled()
+        {
+            #region Variable Declarations
+            WinButton uIUpdateButton = this.UISocialClubMembershipWindow.UIUpdateWindow.UIUpdateButton;
+            #endregion
+
+            // Verify that the 'Enabled' property of 'Update' button equals 'False'
+            Assert.AreEqual(this.UpdateFieldDisabledExpectedValues.UIUpdateButtonEnabled, uIUpdateButton.Enabled, "Update Button Not Disabled after member deleted and with null entries");
+        }
+        
+        /// <summary>
+        /// ManageClearnameClearName - Use 'ManageClearnameClearNameParams' to pass parameters into this method.
+        /// </summary>
+        public void ManageClearnameClearName()
+        {
+            #region Variable Declarations
+            WinEdit uITxt2NameEdit = this.UISocialClubMembershipWindow.UITxt2NameWindow.UITxt2NameEdit;
+            WinButton uIUpdateButton = this.UISocialClubMembershipWindow.UIUpdateWindow.UIUpdateButton;
+            #endregion
+
+            // Type '' in 'txt2Name' text box
+            uITxt2NameEdit.Text = this.ManageClearnameClearNameParams.UITxt2NameEditText;
+
+            // Click 'Update' button
+            Mouse.Click(uIUpdateButton, new Point(39, 14));
         }
         
         #region Properties
@@ -178,6 +717,30 @@ namespace CodedUITestProject1
             }
         }
         
+        public virtual RegisterAndAmmendMemberParams RegisterAndAmmendMemberParams
+        {
+            get
+            {
+                if ((this.mRegisterAndAmmendMemberParams == null))
+                {
+                    this.mRegisterAndAmmendMemberParams = new RegisterAndAmmendMemberParams();
+                }
+                return this.mRegisterAndAmmendMemberParams;
+            }
+        }
+        
+        public virtual UpdateMemberParams UpdateMemberParams
+        {
+            get
+            {
+                if ((this.mUpdateMemberParams == null))
+                {
+                    this.mUpdateMemberParams = new UpdateMemberParams();
+                }
+                return this.mUpdateMemberParams;
+            }
+        }
+        
         public virtual RegistrationSuccessExpectedValues RegistrationSuccessExpectedValues
         {
             get
@@ -187,6 +750,162 @@ namespace CodedUITestProject1
                     this.mRegistrationSuccessExpectedValues = new RegistrationSuccessExpectedValues();
                 }
                 return this.mRegistrationSuccessExpectedValues;
+            }
+        }
+        
+        public virtual CheckHealthStatusUpdatedExpectedValues CheckHealthStatusUpdatedExpectedValues
+        {
+            get
+            {
+                if ((this.mCheckHealthStatusUpdatedExpectedValues == null))
+                {
+                    this.mCheckHealthStatusUpdatedExpectedValues = new CheckHealthStatusUpdatedExpectedValues();
+                }
+                return this.mCheckHealthStatusUpdatedExpectedValues;
+            }
+        }
+        
+        public virtual NewRegistrationForCheckEntryParams NewRegistrationForCheckEntryParams
+        {
+            get
+            {
+                if ((this.mNewRegistrationForCheckEntryParams == null))
+                {
+                    this.mNewRegistrationForCheckEntryParams = new NewRegistrationForCheckEntryParams();
+                }
+                return this.mNewRegistrationForCheckEntryParams;
+            }
+        }
+        
+        public virtual NewEntryCheckManageListExpectedValues NewEntryCheckManageListExpectedValues
+        {
+            get
+            {
+                if ((this.mNewEntryCheckManageListExpectedValues == null))
+                {
+                    this.mNewEntryCheckManageListExpectedValues = new NewEntryCheckManageListExpectedValues();
+                }
+                return this.mNewEntryCheckManageListExpectedValues;
+            }
+        }
+        
+        public virtual UpdateNewMemberNoChildrenParams UpdateNewMemberNoChildrenParams
+        {
+            get
+            {
+                if ((this.mUpdateNewMemberNoChildrenParams == null))
+                {
+                    this.mUpdateNewMemberNoChildrenParams = new UpdateNewMemberNoChildrenParams();
+                }
+                return this.mUpdateNewMemberNoChildrenParams;
+            }
+        }
+        
+        public virtual UpdateMemberSalaryParams UpdateMemberSalaryParams
+        {
+            get
+            {
+                if ((this.mUpdateMemberSalaryParams == null))
+                {
+                    this.mUpdateMemberSalaryParams = new UpdateMemberSalaryParams();
+                }
+                return this.mUpdateMemberSalaryParams;
+            }
+        }
+        
+        public virtual NewMemberSalaryUpdateCheckExpectedValues NewMemberSalaryUpdateCheckExpectedValues
+        {
+            get
+            {
+                if ((this.mNewMemberSalaryUpdateCheckExpectedValues == null))
+                {
+                    this.mNewMemberSalaryUpdateCheckExpectedValues = new NewMemberSalaryUpdateCheckExpectedValues();
+                }
+                return this.mNewMemberSalaryUpdateCheckExpectedValues;
+            }
+        }
+        
+        public virtual NewMemberDeleteClearUpdateFieldsExpectedValues NewMemberDeleteClearUpdateFieldsExpectedValues
+        {
+            get
+            {
+                if ((this.mNewMemberDeleteClearUpdateFieldsExpectedValues == null))
+                {
+                    this.mNewMemberDeleteClearUpdateFieldsExpectedValues = new NewMemberDeleteClearUpdateFieldsExpectedValues();
+                }
+                return this.mNewMemberDeleteClearUpdateFieldsExpectedValues;
+            }
+        }
+        
+        public virtual AssertRegistrationErrorExpectedValues AssertRegistrationErrorExpectedValues
+        {
+            get
+            {
+                if ((this.mAssertRegistrationErrorExpectedValues == null))
+                {
+                    this.mAssertRegistrationErrorExpectedValues = new AssertRegistrationErrorExpectedValues();
+                }
+                return this.mAssertRegistrationErrorExpectedValues;
+            }
+        }
+        
+        public virtual RegistrationFormDateControlSelectTodayParams RegistrationFormDateControlSelectTodayParams
+        {
+            get
+            {
+                if ((this.mRegistrationFormDateControlSelectTodayParams == null))
+                {
+                    this.mRegistrationFormDateControlSelectTodayParams = new RegistrationFormDateControlSelectTodayParams();
+                }
+                return this.mRegistrationFormDateControlSelectTodayParams;
+            }
+        }
+        
+        public virtual DeleteMemberParams DeleteMemberParams
+        {
+            get
+            {
+                if ((this.mDeleteMemberParams == null))
+                {
+                    this.mDeleteMemberParams = new DeleteMemberParams();
+                }
+                return this.mDeleteMemberParams;
+            }
+        }
+        
+        public virtual DeleteClearUpdateFieldsExpectedValues DeleteClearUpdateFieldsExpectedValues
+        {
+            get
+            {
+                if ((this.mDeleteClearUpdateFieldsExpectedValues == null))
+                {
+                    this.mDeleteClearUpdateFieldsExpectedValues = new DeleteClearUpdateFieldsExpectedValues();
+                }
+                return this.mDeleteClearUpdateFieldsExpectedValues;
+            }
+        }
+        
+        public virtual UpdateFieldDisabledExpectedValues UpdateFieldDisabledExpectedValues
+        {
+            get
+            {
+                if ((this.mUpdateFieldDisabledExpectedValues == null))
+                {
+                    this.mUpdateFieldDisabledExpectedValues = new UpdateFieldDisabledExpectedValues();
+                }
+                return this.mUpdateFieldDisabledExpectedValues;
+            }
+        }
+        
+        public virtual ManageClearnameClearNameParams ManageClearnameClearNameParams
+        {
+            get
+            {
+                if ((this.mManageClearnameClearNameParams == null))
+                {
+                    this.mManageClearnameClearNameParams = new ManageClearnameClearNameParams();
+                }
+                return this.mManageClearnameClearNameParams;
             }
         }
         
@@ -225,6 +944,90 @@ namespace CodedUITestProject1
                 return this.mUIRegistrationSuccessfWindow;
             }
         }
+        
+        public UIItemWindow UIItemWindow
+        {
+            get
+            {
+                if ((this.mUIItemWindow == null))
+                {
+                    this.mUIItemWindow = new UIItemWindow();
+                }
+                return this.mUIItemWindow;
+            }
+        }
+        
+        public UIUpdatesuccessfullWindow UIUpdatesuccessfullWindow
+        {
+            get
+            {
+                if ((this.mUIUpdatesuccessfullWindow == null))
+                {
+                    this.mUIUpdatesuccessfullWindow = new UIUpdatesuccessfullWindow();
+                }
+                return this.mUIUpdatesuccessfullWindow;
+            }
+        }
+        
+        public UIMozillaFirefoxWindow UIMozillaFirefoxWindow
+        {
+            get
+            {
+                if ((this.mUIMozillaFirefoxWindow == null))
+                {
+                    this.mUIMozillaFirefoxWindow = new UIMozillaFirefoxWindow();
+                }
+                return this.mUIMozillaFirefoxWindow;
+            }
+        }
+        
+        public UIDeletesuccessfullWindow UIDeletesuccessfullWindow
+        {
+            get
+            {
+                if ((this.mUIDeletesuccessfullWindow == null))
+                {
+                    this.mUIDeletesuccessfullWindow = new UIDeletesuccessfullWindow();
+                }
+                return this.mUIDeletesuccessfullWindow;
+            }
+        }
+        
+        public UIRegistrationerrorWindow UIRegistrationerrorWindow
+        {
+            get
+            {
+                if ((this.mUIRegistrationerrorWindow == null))
+                {
+                    this.mUIRegistrationerrorWindow = new UIRegistrationerrorWindow();
+                }
+                return this.mUIRegistrationerrorWindow;
+            }
+        }
+        
+        public UIItemWindow11 UIItemWindow1
+        {
+            get
+            {
+                if ((this.mUIItemWindow1 == null))
+                {
+                    this.mUIItemWindow1 = new UIItemWindow11();
+                }
+                return this.mUIItemWindow1;
+            }
+        }
+        
+        public UISocialclubLoginWindow1 UISocialclubLoginWindow1
+        {
+            get
+            {
+                if ((this.mUISocialclubLoginWindow1 == null))
+                {
+                    this.mUISocialclubLoginWindow1 = new UISocialclubLoginWindow1();
+                }
+                return this.mUISocialclubLoginWindow1;
+            }
+        }
         #endregion
         
         #region Fields
@@ -234,13 +1037,57 @@ namespace CodedUITestProject1
         
         private RegisterNewParams mRegisterNewParams;
         
+        private RegisterAndAmmendMemberParams mRegisterAndAmmendMemberParams;
+        
+        private UpdateMemberParams mUpdateMemberParams;
+        
         private RegistrationSuccessExpectedValues mRegistrationSuccessExpectedValues;
+        
+        private CheckHealthStatusUpdatedExpectedValues mCheckHealthStatusUpdatedExpectedValues;
+        
+        private NewRegistrationForCheckEntryParams mNewRegistrationForCheckEntryParams;
+        
+        private NewEntryCheckManageListExpectedValues mNewEntryCheckManageListExpectedValues;
+        
+        private UpdateNewMemberNoChildrenParams mUpdateNewMemberNoChildrenParams;
+        
+        private UpdateMemberSalaryParams mUpdateMemberSalaryParams;
+        
+        private NewMemberSalaryUpdateCheckExpectedValues mNewMemberSalaryUpdateCheckExpectedValues;
+        
+        private NewMemberDeleteClearUpdateFieldsExpectedValues mNewMemberDeleteClearUpdateFieldsExpectedValues;
+        
+        private AssertRegistrationErrorExpectedValues mAssertRegistrationErrorExpectedValues;
+        
+        private RegistrationFormDateControlSelectTodayParams mRegistrationFormDateControlSelectTodayParams;
+        
+        private DeleteMemberParams mDeleteMemberParams;
+        
+        private DeleteClearUpdateFieldsExpectedValues mDeleteClearUpdateFieldsExpectedValues;
+        
+        private UpdateFieldDisabledExpectedValues mUpdateFieldDisabledExpectedValues;
+        
+        private ManageClearnameClearNameParams mManageClearnameClearNameParams;
         
         private UISocialclubLoginWindow mUISocialclubLoginWindow;
         
         private UISocialClubMembershipWindow mUISocialClubMembershipWindow;
         
         private UIRegistrationSuccessfWindow mUIRegistrationSuccessfWindow;
+        
+        private UIItemWindow mUIItemWindow;
+        
+        private UIUpdatesuccessfullWindow mUIUpdatesuccessfullWindow;
+        
+        private UIMozillaFirefoxWindow mUIMozillaFirefoxWindow;
+        
+        private UIDeletesuccessfullWindow mUIDeletesuccessfullWindow;
+        
+        private UIRegistrationerrorWindow mUIRegistrationerrorWindow;
+        
+        private UIItemWindow11 mUIItemWindow1;
+        
+        private UISocialclubLoginWindow1 mUISocialclubLoginWindow1;
         #endregion
     }
     
@@ -298,9 +1145,39 @@ namespace CodedUITestProject1
         
         #region Fields
         /// <summary>
-        /// Type 'Bobby' in 'txtName' text box
+        /// Type 'demo' in 'txtUsername' text box
         /// </summary>
-        public string UITxtNameEditText = "Bobby";
+        public string UITxtUsernameEditText = "demo";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtUsername' text box
+        /// </summary>
+        public string UITxtUsernameEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '********' in 'txtPassword' text box
+        /// </summary>
+        public string UITxtPasswordEditSendKeys = "Rev8oF0BpqEt/sIAjLJMpZ+ROx1bg8C+2+9NbaZh47I=";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'Login' button
+        /// </summary>
+        public string UILoginButtonSendKeys = "{Enter}";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'New Registration' tab
+        /// </summary>
+        public string UINewRegistrationTabPageSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Member' tab
+        /// </summary>
+        public string UIMemberTabPageSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type 'aana' in 'txtName' text box
+        /// </summary>
+        public string UITxtNameEditText = "aana";
         
         /// <summary>
         /// Type '{Tab}' in 'txtName' text box
@@ -308,9 +1185,9 @@ namespace CodedUITestProject1
         public string UITxtNameEditSendKeys = "{Tab}";
         
         /// <summary>
-        /// Select '25/12/2000' in 'dtDateOfBirth' date time picker
+        /// Select '11/12/2012' in 'dtDateOfBirth' date time picker
         /// </summary>
-        public string UIDtDateOfBirthDateTimePickerDateTimeAsString = "25-Dec-2000";
+        public string UIDtDateOfBirthDateTimePickerDateTimeAsString = "11-Dec-2012";
         
         /// <summary>
         /// Type '{Tab}' in 'dtDateOfBirth' date time picker
@@ -328,9 +1205,9 @@ namespace CodedUITestProject1
         public string UICmbOccupationComboBoxSendKeys = "{Tab}";
         
         /// <summary>
-        /// Type '3000' in 'txtSalary' text box
+        /// Type '2000' in 'txtSalary' text box
         /// </summary>
-        public string UITxtSalaryEditText = "3000";
+        public string UITxtSalaryEditText = "2000";
         
         /// <summary>
         /// Type '{Tab}' in 'txtSalary' text box
@@ -358,9 +1235,9 @@ namespace CodedUITestProject1
         public string UIMaritalstatusComboBoxSendKeys = "{Tab}";
         
         /// <summary>
-        /// Type '3' in 'txtNoOfChildren' text box
+        /// Type '2' in 'txtNoOfChildren' text box
         /// </summary>
-        public string UITxtNoOfChildrenEditText = "3";
+        public string UITxtNoOfChildrenEditText = "2";
         
         /// <summary>
         /// Type '{Tab}' in 'txtNoOfChildren' text box
@@ -375,6 +1252,161 @@ namespace CodedUITestProject1
     }
     
     /// <summary>
+    /// Parameters to be passed into 'RegisterAndAmmendMember'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class RegisterAndAmmendMemberParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type 'demo' in 'txtUsername' text box
+        /// </summary>
+        public string UITxtUsernameEditText = "demo";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtUsername' text box
+        /// </summary>
+        public string UITxtUsernameEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '********' in 'txtPassword' text box
+        /// </summary>
+        public string UITxtPasswordEditSendKeys = "Rev8oF0BpqEt/sIAjLJMpZ+ROx1bg8C+2+9NbaZh47I=";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'Login' button
+        /// </summary>
+        public string UILoginButtonSendKeys = "{Enter}";
+        
+        /// <summary>
+        /// Type 'blib' in 'txtName' text box
+        /// </summary>
+        public string UITxtNameEditText = "blib";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtName' text box
+        /// </summary>
+        public string UITxtNameEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select '11/12/2012' in 'dtDateOfBirth' date time picker
+        /// </summary>
+        public string UIDtDateOfBirthDateTimePickerDateTimeAsString = "11-Dec-2012";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'dtDateOfBirth' date time picker
+        /// </summary>
+        public string UIDtDateOfBirthDateTimePickerSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Professor' in 'cmbOccupation' combo box
+        /// </summary>
+        public string UICmbOccupationComboBoxSelectedItem = "Professor";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'cmbOccupation' combo box
+        /// </summary>
+        public string UICmbOccupationComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '11' in 'txtSalary' text box
+        /// </summary>
+        public string UITxtSalaryEditText = "11";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtSalary' text box
+        /// </summary>
+        public string UITxtSalaryEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Married' in 'Occupation' combo box
+        /// </summary>
+        public string UIOccupationComboBoxSelectedItem = "Married";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Occupation' combo box
+        /// </summary>
+        public string UIOccupationComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Excellent' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Excellent";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '4' in 'txtNoOfChildren' text box
+        /// </summary>
+        public string UITxtNoOfChildrenEditText = "4";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtNoOfChildren' text box
+        /// </summary>
+        public string UITxtNoOfChildrenEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'Register' button
+        /// </summary>
+        public string UIRegisterButtonSendKeys = "{Enter}";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'OK' button
+        /// </summary>
+        public string UIOKButtonSendKeys = "{Enter}";
+        
+        /// <summary>
+        /// Select 'Engineer' in 'cmbSearchOccupation' combo box
+        /// </summary>
+        public string UICmbSearchOccupationComboBoxSelectedItem = "Engineer";
+        
+        /// <summary>
+        /// Select 'Married' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem1 = "Married";
+        
+        /// <summary>
+        /// Select 'Professor' in 'cmbSearchOccupation' combo box
+        /// </summary>
+        public string UICmbSearchOccupationComboBoxSelectedItem1 = "Professor";
+        
+        /// <summary>
+        /// Type '{Down}' in 'Search' button
+        /// </summary>
+        public string UISearchButtonSendKeys = "{Down}";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'UpdateMember'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UpdateMemberParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Select 'Good' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Good";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Good' list item
+        /// </summary>
+        public string UIGoodListItemSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txt2NoOfChildren' text box
+        /// </summary>
+        public string UITxt2NoOfChildrenEditSendKeys = "{Tab}";
+        #endregion
+    }
+    
+    /// <summary>
     /// Parameters to be passed into 'RegistrationSuccess'
     /// </summary>
     [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
@@ -383,9 +1415,385 @@ namespace CodedUITestProject1
         
         #region Fields
         /// <summary>
-        /// Verify that the 'Name' property of 'New member registered successfully!' label equals 'New member registered successfully!'
+        /// Verify that the 'Name' property of 'OK' button equals 'OK'
         /// </summary>
-        public string UINewmemberregisteredsTextName = "New member registered successfully!";
+        public string UIOKButtonName = "OK";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'CheckHealthStatusUpdated'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class CheckHealthStatusUpdatedExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'Name' property of 'OK' button equals 'OK'
+        /// </summary>
+        public string UIOKButtonName = "OK";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'NewRegistrationForCheckEntry'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class NewRegistrationForCheckEntryParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type 'ana' in 'txtName' text box
+        /// </summary>
+        public string UITxtNameEditText = "ana";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtName' text box
+        /// </summary>
+        public string UITxtNameEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select '11/12/2012' in 'dtDateOfBirth' date time picker
+        /// </summary>
+        public string UIDtDateOfBirthDateTimePickerDateTimeAsString = "11-Dec-2012";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'dtDateOfBirth' date time picker
+        /// </summary>
+        public string UIDtDateOfBirthDateTimePickerSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Doctor' in 'cmbOccupation' combo box
+        /// </summary>
+        public string UICmbOccupationComboBoxSelectedItem = "Doctor";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'cmbOccupation' combo box
+        /// </summary>
+        public string UICmbOccupationComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '2000' in 'txtSalary' text box
+        /// </summary>
+        public string UITxtSalaryEditText = "2000";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtSalary' text box
+        /// </summary>
+        public string UITxtSalaryEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Married' in 'Occupation' combo box
+        /// </summary>
+        public string UIOccupationComboBoxSelectedItem = "Married";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Occupation' combo box
+        /// </summary>
+        public string UIOccupationComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Excellent' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Excellent";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '1' in 'txtNoOfChildren' text box
+        /// </summary>
+        public string UITxtNoOfChildrenEditText = "1";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtNoOfChildren' text box
+        /// </summary>
+        public string UITxtNoOfChildrenEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'Register' button
+        /// </summary>
+        public string UIRegisterButtonSendKeys = "{Enter}";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'OK' button
+        /// </summary>
+        public string UIOKButtonSendKeys = "{Enter}";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'NewEntryCheckManageList'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class NewEntryCheckManageListExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'ana' cell equals 'ana'
+        /// </summary>
+        public string UIAnaCellFriendlyName = "ana";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'UpdateNewMemberNoChildren'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UpdateNewMemberNoChildrenParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type '2' in 'txt2NoOfChildren' text box
+        /// </summary>
+        public string UITxt2NoOfChildrenEditText = "2";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'UpdateMemberSalary'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UpdateMemberSalaryParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type '2' in 'txt2Salary' text box
+        /// </summary>
+        public string UITxt2SalaryEditText = "2";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'NewMemberSalaryUpdateCheck'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class NewMemberSalaryUpdateCheckExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'Text' property of 'txt2Salary' text box equals '2'
+        /// </summary>
+        public string UITxt2SalaryEditText = "2";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'NewMemberDeleteClearUpdateFields'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class NewMemberDeleteClearUpdateFieldsExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'Text' property of 'txt2Name' text box is not equal to 'ana'
+        /// </summary>
+        public string UITxt2NameEditText = "ana";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'AssertRegistrationError'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class AssertRegistrationErrorExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'Name' property of 'Please check the following. Name is required. Plea...' label equals 'Please check the following.Name is required.Please select a occupation.Please select marital status.Please select health status.'
+        /// </summary>
+        public string UIPleasecheckthefollowTextName = "Please check the following.Name is required.Please select a occupation.Please sel" +
+            "ect marital status.Please select health status.";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'RegistrationFormDateControlSelectToday'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class RegistrationFormDateControlSelectTodayParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Select '28/11/2012' in 'dtDateOfBirth' date time picker
+        /// </summary>
+        public string UIDtDateOfBirthDateTimePickerDateTimeAsString = "28-Nov-2012";
+        
+        /// <summary>
+        /// Select '28/11/2012' in 'dtDateOfBirth' date time picker
+        /// </summary>
+        public string UIDtDateOfBirthDateTimePickerDateTimeAsString1 = "28-Nov-2012";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'DeleteMember'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class DeleteMemberParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type 'demo' in 'txtUsername' text box
+        /// </summary>
+        public string UITxtUsernameEditText = "demo";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtUsername' text box
+        /// </summary>
+        public string UITxtUsernameEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '********' in 'txtPassword' text box
+        /// </summary>
+        public string UITxtPasswordEditSendKeys = "Rev8oF0BpqEt/sIAjLJMpZ+ROx1bg8C+2+9NbaZh47I=";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Login' button
+        /// </summary>
+        public string UILoginButtonSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtUsername' text box
+        /// </summary>
+        public string UITxtUsernameEditSendKeys1 = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtPassword' text box
+        /// </summary>
+        public string UITxtPasswordEditSendKeys1 = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'Login' button
+        /// </summary>
+        public string UILoginButtonSendKeys1 = "{Enter}";
+        
+        /// <summary>
+        /// Type 'blib' in 'txtName' text box
+        /// </summary>
+        public string UITxtNameEditText = "blib";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtName' text box
+        /// </summary>
+        public string UITxtNameEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'dtDateOfBirth' date time picker
+        /// </summary>
+        public string UIDtDateOfBirthDateTimePickerSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Doctor' in 'cmbOccupation' combo box
+        /// </summary>
+        public string UICmbOccupationComboBoxSelectedItem = "Doctor";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'cmbOccupation' combo box
+        /// </summary>
+        public string UICmbOccupationComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '1000' in 'txtSalary' text box
+        /// </summary>
+        public string UITxtSalaryEditText = "1000";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtSalary' text box
+        /// </summary>
+        public string UITxtSalaryEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Married' in 'Occupation' combo box
+        /// </summary>
+        public string UIOccupationComboBoxSelectedItem = "Married";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Occupation' combo box
+        /// </summary>
+        public string UIOccupationComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Select 'Excellent' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSelectedItem = "Excellent";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'Marital status' combo box
+        /// </summary>
+        public string UIMaritalstatusComboBoxSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '1' in 'txtNoOfChildren' text box
+        /// </summary>
+        public string UITxtNoOfChildrenEditText = "1";
+        
+        /// <summary>
+        /// Type '{Tab}' in 'txtNoOfChildren' text box
+        /// </summary>
+        public string UITxtNoOfChildrenEditSendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type '{Enter}' in 'Register' button
+        /// </summary>
+        public string UIRegisterButtonSendKeys = "{Enter}";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'DeleteClearUpdateFields'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class DeleteClearUpdateFieldsExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'FriendlyName' property of 'txt2Name' text box equals ''
+        /// </summary>
+        public string UITxt2NameEditFriendlyName = "";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'UpdateFieldDisabled'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UpdateFieldDisabledExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'Enabled' property of 'Update' button equals 'False'
+        /// </summary>
+        public bool UIUpdateButtonEnabled = false;
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'ManageClearnameClearName'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class ManageClearnameClearNameParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type '' in 'txt2Name' text box
+        /// </summary>
+        public string UITxt2NameEditText = "";
         #endregion
     }
     
@@ -665,6 +2073,186 @@ namespace CodedUITestProject1
                 return this.mUITxtNoOfChildrenWindow;
             }
         }
+        
+        public UITabWindow UITabWindow
+        {
+            get
+            {
+                if ((this.mUITabWindow == null))
+                {
+                    this.mUITabWindow = new UITabWindow(this);
+                }
+                return this.mUITabWindow;
+            }
+        }
+        
+        public UICmbSearchOccupationWindow UICmbSearchOccupationWindow
+        {
+            get
+            {
+                if ((this.mUICmbSearchOccupationWindow == null))
+                {
+                    this.mUICmbSearchOccupationWindow = new UICmbSearchOccupationWindow(this);
+                }
+                return this.mUICmbSearchOccupationWindow;
+            }
+        }
+        
+        public UICmbSearchMaritalStatWindow UICmbSearchMaritalStatWindow
+        {
+            get
+            {
+                if ((this.mUICmbSearchMaritalStatWindow == null))
+                {
+                    this.mUICmbSearchMaritalStatWindow = new UICmbSearchMaritalStatWindow(this);
+                }
+                return this.mUICmbSearchMaritalStatWindow;
+            }
+        }
+        
+        public UISearchWindow UISearchWindow
+        {
+            get
+            {
+                if ((this.mUISearchWindow == null))
+                {
+                    this.mUISearchWindow = new UISearchWindow(this);
+                }
+                return this.mUISearchWindow;
+            }
+        }
+        
+        public UIDataGridViewMembersWindow UIDataGridViewMembersWindow
+        {
+            get
+            {
+                if ((this.mUIDataGridViewMembersWindow == null))
+                {
+                    this.mUIDataGridViewMembersWindow = new UIDataGridViewMembersWindow(this);
+                }
+                return this.mUIDataGridViewMembersWindow;
+            }
+        }
+        
+        public UICmb2HealthStatusWindow UICmb2HealthStatusWindow
+        {
+            get
+            {
+                if ((this.mUICmb2HealthStatusWindow == null))
+                {
+                    this.mUICmb2HealthStatusWindow = new UICmb2HealthStatusWindow(this);
+                }
+                return this.mUICmb2HealthStatusWindow;
+            }
+        }
+        
+        public UIUpdateWindow UIUpdateWindow
+        {
+            get
+            {
+                if ((this.mUIUpdateWindow == null))
+                {
+                    this.mUIUpdateWindow = new UIUpdateWindow(this);
+                }
+                return this.mUIUpdateWindow;
+            }
+        }
+        
+        public UITabControl2Window UITabControl2Window
+        {
+            get
+            {
+                if ((this.mUITabControl2Window == null))
+                {
+                    this.mUITabControl2Window = new UITabControl2Window(this);
+                }
+                return this.mUITabControl2Window;
+            }
+        }
+        
+        public UIRefreshWindow UIRefreshWindow
+        {
+            get
+            {
+                if ((this.mUIRefreshWindow == null))
+                {
+                    this.mUIRefreshWindow = new UIRefreshWindow(this);
+                }
+                return this.mUIRefreshWindow;
+            }
+        }
+        
+        public UICmbOperandWindow UICmbOperandWindow
+        {
+            get
+            {
+                if ((this.mUICmbOperandWindow == null))
+                {
+                    this.mUICmbOperandWindow = new UICmbOperandWindow(this);
+                }
+                return this.mUICmbOperandWindow;
+            }
+        }
+        
+        public UITxt2NoOfChildrenWindow UITxt2NoOfChildrenWindow
+        {
+            get
+            {
+                if ((this.mUITxt2NoOfChildrenWindow == null))
+                {
+                    this.mUITxt2NoOfChildrenWindow = new UITxt2NoOfChildrenWindow(this);
+                }
+                return this.mUITxt2NoOfChildrenWindow;
+            }
+        }
+        
+        public UITxt2NameWindow UITxt2NameWindow
+        {
+            get
+            {
+                if ((this.mUITxt2NameWindow == null))
+                {
+                    this.mUITxt2NameWindow = new UITxt2NameWindow(this);
+                }
+                return this.mUITxt2NameWindow;
+            }
+        }
+        
+        public UICmb2OccupationWindow UICmb2OccupationWindow
+        {
+            get
+            {
+                if ((this.mUICmb2OccupationWindow == null))
+                {
+                    this.mUICmb2OccupationWindow = new UICmb2OccupationWindow(this);
+                }
+                return this.mUICmb2OccupationWindow;
+            }
+        }
+        
+        public UITxt2SalaryWindow UITxt2SalaryWindow
+        {
+            get
+            {
+                if ((this.mUITxt2SalaryWindow == null))
+                {
+                    this.mUITxt2SalaryWindow = new UITxt2SalaryWindow(this);
+                }
+                return this.mUITxt2SalaryWindow;
+            }
+        }
+        
+        public UIDeleteWindow UIDeleteWindow
+        {
+            get
+            {
+                if ((this.mUIDeleteWindow == null))
+                {
+                    this.mUIDeleteWindow = new UIDeleteWindow(this);
+                }
+                return this.mUIDeleteWindow;
+            }
+        }
         #endregion
         
         #region Fields
@@ -683,6 +2271,36 @@ namespace CodedUITestProject1
         private UICmbHealthStatusWindow mUICmbHealthStatusWindow;
         
         private UITxtNoOfChildrenWindow mUITxtNoOfChildrenWindow;
+        
+        private UITabWindow mUITabWindow;
+        
+        private UICmbSearchOccupationWindow mUICmbSearchOccupationWindow;
+        
+        private UICmbSearchMaritalStatWindow mUICmbSearchMaritalStatWindow;
+        
+        private UISearchWindow mUISearchWindow;
+        
+        private UIDataGridViewMembersWindow mUIDataGridViewMembersWindow;
+        
+        private UICmb2HealthStatusWindow mUICmb2HealthStatusWindow;
+        
+        private UIUpdateWindow mUIUpdateWindow;
+        
+        private UITabControl2Window mUITabControl2Window;
+        
+        private UIRefreshWindow mUIRefreshWindow;
+        
+        private UICmbOperandWindow mUICmbOperandWindow;
+        
+        private UITxt2NoOfChildrenWindow mUITxt2NoOfChildrenWindow;
+        
+        private UITxt2NameWindow mUITxt2NameWindow;
+        
+        private UICmb2OccupationWindow mUICmb2OccupationWindow;
+        
+        private UITxt2SalaryWindow mUITxt2SalaryWindow;
+        
+        private UIDeleteWindow mUIDeleteWindow;
         #endregion
     }
     
@@ -971,6 +2589,1168 @@ namespace CodedUITestProject1
     }
     
     [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITabWindow : WinWindow
+    {
+        
+        public UITabWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "tab";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinTabPage UISearchManageMembersTabPage
+        {
+            get
+            {
+                if ((this.mUISearchManageMembersTabPage == null))
+                {
+                    this.mUISearchManageMembersTabPage = new WinTabPage(this);
+                    #region Search Criteria
+                    this.mUISearchManageMembersTabPage.SearchProperties[WinTabPage.PropertyNames.Name] = "Search / Manage Members";
+                    this.mUISearchManageMembersTabPage.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUISearchManageMembersTabPage;
+            }
+        }
+        
+        public WinTabPage UINewRegistrationTabPage
+        {
+            get
+            {
+                if ((this.mUINewRegistrationTabPage == null))
+                {
+                    this.mUINewRegistrationTabPage = new WinTabPage(this);
+                    #region Search Criteria
+                    this.mUINewRegistrationTabPage.SearchProperties[WinTabPage.PropertyNames.Name] = "New Registration";
+                    this.mUINewRegistrationTabPage.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUINewRegistrationTabPage;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinTabPage mUISearchManageMembersTabPage;
+        
+        private WinTabPage mUINewRegistrationTabPage;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UICmbSearchOccupationWindow : WinWindow
+    {
+        
+        public UICmbSearchOccupationWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "cmbSearchOccupation";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinComboBox UICmbSearchOccupationComboBox
+        {
+            get
+            {
+                if ((this.mUICmbSearchOccupationComboBox == null))
+                {
+                    this.mUICmbSearchOccupationComboBox = new WinComboBox(this);
+                    #region Search Criteria
+                    this.mUICmbSearchOccupationComboBox.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUICmbSearchOccupationComboBox;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinComboBox mUICmbSearchOccupationComboBox;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UICmbSearchMaritalStatWindow : WinWindow
+    {
+        
+        public UICmbSearchMaritalStatWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "cmbSearchMaritalStatus";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinComboBox UIMaritalstatusComboBox
+        {
+            get
+            {
+                if ((this.mUIMaritalstatusComboBox == null))
+                {
+                    this.mUIMaritalstatusComboBox = new WinComboBox(this);
+                    #region Search Criteria
+                    this.mUIMaritalstatusComboBox.SearchProperties[WinComboBox.PropertyNames.Name] = "Marital status";
+                    this.mUIMaritalstatusComboBox.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIMaritalstatusComboBox;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinComboBox mUIMaritalstatusComboBox;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UISearchWindow : WinWindow
+    {
+        
+        public UISearchWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnSearch";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UISearchButton
+        {
+            get
+            {
+                if ((this.mUISearchButton == null))
+                {
+                    this.mUISearchButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUISearchButton.SearchProperties[WinButton.PropertyNames.Name] = "Search";
+                    this.mUISearchButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUISearchButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUISearchButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIDataGridViewMembersWindow : WinWindow
+    {
+        
+        public UIDataGridViewMembersWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "dataGridViewMembers";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public UIDataGridViewTable UIDataGridViewTable
+        {
+            get
+            {
+                if ((this.mUIDataGridViewTable == null))
+                {
+                    this.mUIDataGridViewTable = new UIDataGridViewTable(this);
+                }
+                return this.mUIDataGridViewTable;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIDataGridViewTable mUIDataGridViewTable;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIDataGridViewTable : WinTable
+    {
+        
+        public UIDataGridViewTable(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinTable.PropertyNames.Name] = "DataGridView";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public UIRow6Row UIRow6Row
+        {
+            get
+            {
+                if ((this.mUIRow6Row == null))
+                {
+                    this.mUIRow6Row = new UIRow6Row(this);
+                }
+                return this.mUIRow6Row;
+            }
+        }
+        
+        public UIRow6Row1 UIRow6Row1
+        {
+            get
+            {
+                if ((this.mUIRow6Row1 == null))
+                {
+                    this.mUIRow6Row1 = new UIRow6Row1(this);
+                }
+                return this.mUIRow6Row1;
+            }
+        }
+        
+        public UIRow9Row UIRow9Row
+        {
+            get
+            {
+                if ((this.mUIRow9Row == null))
+                {
+                    this.mUIRow9Row = new UIRow9Row(this);
+                }
+                return this.mUIRow9Row;
+            }
+        }
+        
+        public UIRow23Row UIRow23Row
+        {
+            get
+            {
+                if ((this.mUIRow23Row == null))
+                {
+                    this.mUIRow23Row = new UIRow23Row(this);
+                }
+                return this.mUIRow23Row;
+            }
+        }
+        
+        public UIRow0Row UIRow0Row
+        {
+            get
+            {
+                if ((this.mUIRow0Row == null))
+                {
+                    this.mUIRow0Row = new UIRow0Row(this);
+                }
+                return this.mUIRow0Row;
+            }
+        }
+        
+        public UIRow14Row UIRow14Row
+        {
+            get
+            {
+                if ((this.mUIRow14Row == null))
+                {
+                    this.mUIRow14Row = new UIRow14Row(this);
+                }
+                return this.mUIRow14Row;
+            }
+        }
+        
+        public UIRow3Row UIRow3Row
+        {
+            get
+            {
+                if ((this.mUIRow3Row == null))
+                {
+                    this.mUIRow3Row = new UIRow3Row(this);
+                }
+                return this.mUIRow3Row;
+            }
+        }
+        
+        public UIRow3Row1 UIRow3Row1
+        {
+            get
+            {
+                if ((this.mUIRow3Row1 == null))
+                {
+                    this.mUIRow3Row1 = new UIRow3Row1(this);
+                }
+                return this.mUIRow3Row1;
+            }
+        }
+        
+        public UIRow3Row2 UIRow3Row2
+        {
+            get
+            {
+                if ((this.mUIRow3Row2 == null))
+                {
+                    this.mUIRow3Row2 = new UIRow3Row2(this);
+                }
+                return this.mUIRow3Row2;
+            }
+        }
+        
+        public UITopRowRow UITopRowRow
+        {
+            get
+            {
+                if ((this.mUITopRowRow == null))
+                {
+                    this.mUITopRowRow = new UITopRowRow(this);
+                }
+                return this.mUITopRowRow;
+            }
+        }
+        
+        public UIRow0Row1 UIRow0Row1
+        {
+            get
+            {
+                if ((this.mUIRow0Row1 == null))
+                {
+                    this.mUIRow0Row1 = new UIRow0Row1(this);
+                }
+                return this.mUIRow0Row1;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIRow6Row mUIRow6Row;
+        
+        private UIRow6Row1 mUIRow6Row1;
+        
+        private UIRow9Row mUIRow9Row;
+        
+        private UIRow23Row mUIRow23Row;
+        
+        private UIRow0Row mUIRow0Row;
+        
+        private UIRow14Row mUIRow14Row;
+        
+        private UIRow3Row mUIRow3Row;
+        
+        private UIRow3Row1 mUIRow3Row1;
+        
+        private UIRow3Row2 mUIRow3Row2;
+        
+        private UITopRowRow mUITopRowRow;
+        
+        private UIRow0Row1 mUIRow0Row1;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow6Row : WinRow
+    {
+        
+        public UIRow6Row(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";Bill;11/12/2012;Doctor;Married;Excellent;3000;4", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIBillCell
+        {
+            get
+            {
+                if ((this.mUIBillCell == null))
+                {
+                    this.mUIBillCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIBillCell.SearchProperties[WinCell.PropertyNames.Value] = "Bill";
+                    this.mUIBillCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIBillCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIBillCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow6Row1 : WinRow
+    {
+        
+        public UIRow6Row1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";Bill;11/12/2012;Doctor;Married;Good;3000;4", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIGoodCell
+        {
+            get
+            {
+                if ((this.mUIGoodCell == null))
+                {
+                    this.mUIGoodCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIGoodCell.SearchProperties[WinCell.PropertyNames.Value] = "Good";
+                    this.mUIGoodCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIGoodCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIGoodCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow9Row : WinRow
+    {
+        
+        public UIRow9Row(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";ann;11/12/2012;Doctor;Married;Excellent;11000;1", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIItem45Cell
+        {
+            get
+            {
+                if ((this.mUIItem45Cell == null))
+                {
+                    this.mUIItem45Cell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIItem45Cell.SearchProperties[WinCell.PropertyNames.Value] = "45";
+                    this.mUIItem45Cell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIItem45Cell;
+            }
+        }
+        
+        public WinCell UIAnnCell
+        {
+            get
+            {
+                if ((this.mUIAnnCell == null))
+                {
+                    this.mUIAnnCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIAnnCell.SearchProperties[WinCell.PropertyNames.Value] = "ann";
+                    this.mUIAnnCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIAnnCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIItem45Cell;
+        
+        private WinCell mUIAnnCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow23Row : WinRow
+    {
+        
+        public UIRow23Row(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";ann;11/12/2012;Doctor;Married;Good;11000;1", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinRowHeader UIItemRowHeader
+        {
+            get
+            {
+                if ((this.mUIItemRowHeader == null))
+                {
+                    this.mUIItemRowHeader = new WinRowHeader(this);
+                    #region Search Criteria
+                    this.mUIItemRowHeader.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIItemRowHeader;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinRowHeader mUIItemRowHeader;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow0Row : WinRow
+    {
+        
+        public UIRow0Row(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";Gregory;20/09/1987;Doctor;Married;Excellent;12000;1", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIItem16Cell
+        {
+            get
+            {
+                if ((this.mUIItem16Cell == null))
+                {
+                    this.mUIItem16Cell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIItem16Cell.SearchProperties[WinCell.PropertyNames.Value] = "16";
+                    this.mUIItem16Cell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIItem16Cell;
+            }
+        }
+        
+        public WinCell UIGregoryCell
+        {
+            get
+            {
+                if ((this.mUIGregoryCell == null))
+                {
+                    this.mUIGregoryCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIGregoryCell.SearchProperties[WinCell.PropertyNames.Value] = "Gregory";
+                    this.mUIGregoryCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIGregoryCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIItem16Cell;
+        
+        private WinCell mUIGregoryCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow14Row : WinRow
+    {
+        
+        public UIRow14Row(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";anna;11/12/2012;Doctor;Married;Excellent;11000;2", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIItem48Cell
+        {
+            get
+            {
+                if ((this.mUIItem48Cell == null))
+                {
+                    this.mUIItem48Cell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIItem48Cell.SearchProperties[WinCell.PropertyNames.Value] = "48";
+                    this.mUIItem48Cell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIItem48Cell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIItem48Cell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow3Row : WinRow
+    {
+        
+        public UIRow3Row(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";lucy;11/12/2012;Professor;Married;Excellent;33000;2", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UILucyCell
+        {
+            get
+            {
+                if ((this.mUILucyCell == null))
+                {
+                    this.mUILucyCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUILucyCell.SearchProperties[WinCell.PropertyNames.Value] = "lucy";
+                    this.mUILucyCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUILucyCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUILucyCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow3Row1 : WinRow
+    {
+        
+        public UIRow3Row1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";lucy;11/12/2012;Professor;Married;Poor;33000;2", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UILucyCell
+        {
+            get
+            {
+                if ((this.mUILucyCell == null))
+                {
+                    this.mUILucyCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUILucyCell.SearchProperties[WinCell.PropertyNames.Value] = "lucy";
+                    this.mUILucyCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUILucyCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUILucyCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow3Row2 : WinRow
+    {
+        
+        public UIRow3Row2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";blib;11/12/2012;Professor;Married;Excellent;11;4", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinRowHeader UIItemRowHeader
+        {
+            get
+            {
+                if ((this.mUIItemRowHeader == null))
+                {
+                    this.mUIItemRowHeader = new WinRowHeader(this);
+                    #region Search Criteria
+                    this.mUIItemRowHeader.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIItemRowHeader;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinRowHeader mUIItemRowHeader;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITopRowRow : WinRow
+    {
+        
+        public UITopRowRow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinRow.PropertyNames.Name] = "Top Row";
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinColumnHeader UINameColumnHeader
+        {
+            get
+            {
+                if ((this.mUINameColumnHeader == null))
+                {
+                    this.mUINameColumnHeader = new WinColumnHeader(this);
+                    #region Search Criteria
+                    this.mUINameColumnHeader.SearchProperties[WinControl.PropertyNames.Name] = "Name";
+                    this.mUINameColumnHeader.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUINameColumnHeader;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinColumnHeader mUINameColumnHeader;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRow0Row1 : WinRow
+    {
+        
+        public UIRow0Row1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties.Add(new PropertyExpression(WinRow.PropertyNames.Value, ";ana;11/12/2012;Doctor;Married;Excellent;2000;1", PropertyExpressionOperator.Contains));
+            this.SearchConfigurations.Add(SearchConfiguration.AlwaysSearch);
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCell UIAnaCell
+        {
+            get
+            {
+                if ((this.mUIAnaCell == null))
+                {
+                    this.mUIAnaCell = new WinCell(this);
+                    #region Search Criteria
+                    this.mUIAnaCell.SearchProperties[WinCell.PropertyNames.Value] = "ana";
+                    this.mUIAnaCell.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIAnaCell;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCell mUIAnaCell;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UICmb2HealthStatusWindow : WinWindow
+    {
+        
+        public UICmb2HealthStatusWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "cmb2HealthStatus";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinComboBox UIMaritalstatusComboBox
+        {
+            get
+            {
+                if ((this.mUIMaritalstatusComboBox == null))
+                {
+                    this.mUIMaritalstatusComboBox = new WinComboBox(this);
+                    #region Search Criteria
+                    this.mUIMaritalstatusComboBox.SearchProperties[WinComboBox.PropertyNames.Name] = "Marital status";
+                    this.mUIMaritalstatusComboBox.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIMaritalstatusComboBox;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinComboBox mUIMaritalstatusComboBox;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIUpdateWindow : WinWindow
+    {
+        
+        public UIUpdateWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnUpdate";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIUpdateButton
+        {
+            get
+            {
+                if ((this.mUIUpdateButton == null))
+                {
+                    this.mUIUpdateButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIUpdateButton.SearchProperties[WinButton.PropertyNames.Name] = "Update";
+                    this.mUIUpdateButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIUpdateButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIUpdateButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITabControl2Window : WinWindow
+    {
+        
+        public UITabControl2Window(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "tabControl2";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinTabPage UIMemberTabPage
+        {
+            get
+            {
+                if ((this.mUIMemberTabPage == null))
+                {
+                    this.mUIMemberTabPage = new WinTabPage(this);
+                    #region Search Criteria
+                    this.mUIMemberTabPage.SearchProperties[WinTabPage.PropertyNames.Name] = "Member";
+                    this.mUIMemberTabPage.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIMemberTabPage;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinTabPage mUIMemberTabPage;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRefreshWindow : WinWindow
+    {
+        
+        public UIRefreshWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnRefresh";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIRefreshButton
+        {
+            get
+            {
+                if ((this.mUIRefreshButton == null))
+                {
+                    this.mUIRefreshButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIRefreshButton.SearchProperties[WinButton.PropertyNames.Name] = "Refresh";
+                    this.mUIRefreshButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIRefreshButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIRefreshButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UICmbOperandWindow : WinWindow
+    {
+        
+        public UICmbOperandWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "cmbOperand";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinComboBox UICmbOperandComboBox
+        {
+            get
+            {
+                if ((this.mUICmbOperandComboBox == null))
+                {
+                    this.mUICmbOperandComboBox = new WinComboBox(this);
+                    #region Search Criteria
+                    this.mUICmbOperandComboBox.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUICmbOperandComboBox;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinComboBox mUICmbOperandComboBox;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITxt2NoOfChildrenWindow : WinWindow
+    {
+        
+        public UITxt2NoOfChildrenWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "txt2NoOfChildren";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinEdit UITxt2NoOfChildrenEdit
+        {
+            get
+            {
+                if ((this.mUITxt2NoOfChildrenEdit == null))
+                {
+                    this.mUITxt2NoOfChildrenEdit = new WinEdit(this);
+                    #region Search Criteria
+                    this.mUITxt2NoOfChildrenEdit.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUITxt2NoOfChildrenEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinEdit mUITxt2NoOfChildrenEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITxt2NameWindow : WinWindow
+    {
+        
+        public UITxt2NameWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "txt2Name";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinEdit UITxt2NameEdit
+        {
+            get
+            {
+                if ((this.mUITxt2NameEdit == null))
+                {
+                    this.mUITxt2NameEdit = new WinEdit(this);
+                    #region Search Criteria
+                    this.mUITxt2NameEdit.SearchProperties[WinEdit.PropertyNames.Name] = "Date of Birth";
+                    this.mUITxt2NameEdit.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUITxt2NameEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinEdit mUITxt2NameEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UICmb2OccupationWindow : WinWindow
+    {
+        
+        public UICmb2OccupationWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "cmb2Occupation";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinComboBox UICmb2OccupationComboBox
+        {
+            get
+            {
+                if ((this.mUICmb2OccupationComboBox == null))
+                {
+                    this.mUICmb2OccupationComboBox = new WinComboBox(this);
+                    #region Search Criteria
+                    this.mUICmb2OccupationComboBox.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUICmb2OccupationComboBox;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinComboBox mUICmb2OccupationComboBox;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITxt2SalaryWindow : WinWindow
+    {
+        
+        public UITxt2SalaryWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "txt2Salary";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinEdit UITxt2SalaryEdit
+        {
+            get
+            {
+                if ((this.mUITxt2SalaryEdit == null))
+                {
+                    this.mUITxt2SalaryEdit = new WinEdit(this);
+                    #region Search Criteria
+                    this.mUITxt2SalaryEdit.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUITxt2SalaryEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinEdit mUITxt2SalaryEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIDeleteWindow : WinWindow
+    {
+        
+        public UIDeleteWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnDelete";
+            this.WindowTitles.Add("Social Club - Membership Manager");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIDeleteButton
+        {
+            get
+            {
+                if ((this.mUIDeleteButton == null))
+                {
+                    this.mUIDeleteButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIDeleteButton.SearchProperties[WinButton.PropertyNames.Name] = "Delete";
+                    this.mUIDeleteButton.WindowTitles.Add("Social Club - Membership Manager");
+                    #endregion
+                }
+                return this.mUIDeleteButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIDeleteButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
     public class UIRegistrationSuccessfWindow : WinWindow
     {
         
@@ -995,10 +3775,24 @@ namespace CodedUITestProject1
                 return this.mUINewmemberregisteredsWindow;
             }
         }
+        
+        public UIOKWindow UIOKWindow
+        {
+            get
+            {
+                if ((this.mUIOKWindow == null))
+                {
+                    this.mUIOKWindow = new UIOKWindow(this);
+                }
+                return this.mUIOKWindow;
+            }
+        }
         #endregion
         
         #region Fields
         private UINewmemberregisteredsWindow mUINewmemberregisteredsWindow;
+        
+        private UIOKWindow mUIOKWindow;
         #endregion
     }
     
@@ -1035,6 +3829,682 @@ namespace CodedUITestProject1
         
         #region Fields
         private WinText mUINewmemberregisteredsText;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIOKWindow : WinWindow
+    {
+        
+        public UIOKWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlId] = "2";
+            this.WindowTitles.Add("Registration Successful");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIOKButton
+        {
+            get
+            {
+                if ((this.mUIOKButton == null))
+                {
+                    this.mUIOKButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIOKButton.SearchProperties[WinButton.PropertyNames.Name] = "OK";
+                    this.mUIOKButton.WindowTitles.Add("Registration Successful");
+                    #endregion
+                }
+                return this.mUIOKButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIOKButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemWindow : WinWindow
+    {
+        
+        public UIItemWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.AccessibleName] = "Desktop";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32769";
+            #endregion
+        }
+        
+        #region Properties
+        public UIItemWindow1 UIItemWindow1
+        {
+            get
+            {
+                if ((this.mUIItemWindow1 == null))
+                {
+                    this.mUIItemWindow1 = new UIItemWindow1(this);
+                }
+                return this.mUIItemWindow1;
+            }
+        }
+        
+        public UIMaritalstatusList UIMaritalstatusList
+        {
+            get
+            {
+                if ((this.mUIMaritalstatusList == null))
+                {
+                    this.mUIMaritalstatusList = new UIMaritalstatusList(this);
+                }
+                return this.mUIMaritalstatusList;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIItemWindow1 mUIItemWindow1;
+        
+        private UIMaritalstatusList mUIMaritalstatusList;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemWindow1 : WinWindow
+    {
+        
+        public UIItemWindow1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "ComboLBox";
+            #endregion
+        }
+        
+        #region Properties
+        public UIItemList UIItemList
+        {
+            get
+            {
+                if ((this.mUIItemList == null))
+                {
+                    this.mUIItemList = new UIItemList(this);
+                }
+                return this.mUIItemList;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIItemList mUIItemList;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemList : WinList
+    {
+        
+        public UIItemList(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+        }
+        
+        #region Properties
+        public WinListItem UIDoctorListItem
+        {
+            get
+            {
+                if ((this.mUIDoctorListItem == null))
+                {
+                    this.mUIDoctorListItem = new WinListItem(this);
+                    #region Search Criteria
+                    this.mUIDoctorListItem.SearchProperties[WinListItem.PropertyNames.Name] = "Doctor";
+                    #endregion
+                }
+                return this.mUIDoctorListItem;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinListItem mUIDoctorListItem;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIMaritalstatusList : WinList
+    {
+        
+        public UIMaritalstatusList(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinList.PropertyNames.Name] = "Marital status";
+            #endregion
+        }
+        
+        #region Properties
+        public WinListItem UIGoodListItem
+        {
+            get
+            {
+                if ((this.mUIGoodListItem == null))
+                {
+                    this.mUIGoodListItem = new WinListItem(this);
+                    #region Search Criteria
+                    this.mUIGoodListItem.SearchProperties[WinListItem.PropertyNames.Name] = "Good";
+                    #endregion
+                }
+                return this.mUIGoodListItem;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinListItem mUIGoodListItem;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIUpdatesuccessfullWindow : WinWindow
+    {
+        
+        public UIUpdatesuccessfullWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Update successfull";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32770";
+            this.WindowTitles.Add("Update successfull");
+            #endregion
+        }
+        
+        #region Properties
+        public UIOKWindow1 UIOKWindow
+        {
+            get
+            {
+                if ((this.mUIOKWindow == null))
+                {
+                    this.mUIOKWindow = new UIOKWindow1(this);
+                }
+                return this.mUIOKWindow;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIOKWindow1 mUIOKWindow;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIOKWindow1 : WinWindow
+    {
+        
+        public UIOKWindow1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlId] = "2";
+            this.WindowTitles.Add("Update successfull");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIOKButton
+        {
+            get
+            {
+                if ((this.mUIOKButton == null))
+                {
+                    this.mUIOKButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIOKButton.SearchProperties[WinButton.PropertyNames.Name] = "OK";
+                    this.mUIOKButton.WindowTitles.Add("Update successfull");
+                    #endregion
+                }
+                return this.mUIOKButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIOKButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIMozillaFirefoxWindow : WinWindow
+    {
+        
+        public UIMozillaFirefoxWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Mozilla Firefox";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "MozillaWindowClass";
+            this.WindowTitles.Add("Mozilla Firefox");
+            #endregion
+        }
+        
+        #region Properties
+        public UIItemPropertyPage UIItemPropertyPage
+        {
+            get
+            {
+                if ((this.mUIItemPropertyPage == null))
+                {
+                    this.mUIItemPropertyPage = new UIItemPropertyPage(this);
+                }
+                return this.mUIItemPropertyPage;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIItemPropertyPage mUIItemPropertyPage;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemPropertyPage : WinControl
+    {
+        
+        public UIItemPropertyPage(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[UITestControl.PropertyNames.ControlType] = "PropertyPage";
+            this.WindowTitles.Add("Mozilla Firefox");
+            #endregion
+        }
+        
+        #region Properties
+        public WinCustom UIItemCustom
+        {
+            get
+            {
+                if ((this.mUIItemCustom == null))
+                {
+                    this.mUIItemCustom = new WinCustom(this);
+                    #region Search Criteria
+                    this.mUIItemCustom.WindowTitles.Add("Mozilla Firefox");
+                    #endregion
+                }
+                return this.mUIItemCustom;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinCustom mUIItemCustom;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIDeletesuccessfullWindow : WinWindow
+    {
+        
+        public UIDeletesuccessfullWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Delete successfull";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32770";
+            this.WindowTitles.Add("Delete successfull");
+            #endregion
+        }
+        
+        #region Properties
+        public UIOKWindow2 UIOKWindow
+        {
+            get
+            {
+                if ((this.mUIOKWindow == null))
+                {
+                    this.mUIOKWindow = new UIOKWindow2(this);
+                }
+                return this.mUIOKWindow;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIOKWindow2 mUIOKWindow;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIOKWindow2 : WinWindow
+    {
+        
+        public UIOKWindow2(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlId] = "2";
+            this.WindowTitles.Add("Delete successfull");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIOKButton
+        {
+            get
+            {
+                if ((this.mUIOKButton == null))
+                {
+                    this.mUIOKButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIOKButton.SearchProperties[WinButton.PropertyNames.Name] = "OK";
+                    this.mUIOKButton.WindowTitles.Add("Delete successfull");
+                    #endregion
+                }
+                return this.mUIOKButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIOKButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIRegistrationerrorWindow : WinWindow
+    {
+        
+        public UIRegistrationerrorWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Registration error";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32770";
+            this.WindowTitles.Add("Registration error");
+            #endregion
+        }
+        
+        #region Properties
+        public UIPleasecheckthefollowWindow UIPleasecheckthefollowWindow
+        {
+            get
+            {
+                if ((this.mUIPleasecheckthefollowWindow == null))
+                {
+                    this.mUIPleasecheckthefollowWindow = new UIPleasecheckthefollowWindow(this);
+                }
+                return this.mUIPleasecheckthefollowWindow;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIPleasecheckthefollowWindow mUIPleasecheckthefollowWindow;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIPleasecheckthefollowWindow : WinWindow
+    {
+        
+        public UIPleasecheckthefollowWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlId] = "65535";
+            this.WindowTitles.Add("Registration error");
+            #endregion
+        }
+        
+        #region Properties
+        public WinText UIPleasecheckthefollowText
+        {
+            get
+            {
+                if ((this.mUIPleasecheckthefollowText == null))
+                {
+                    this.mUIPleasecheckthefollowText = new WinText(this);
+                    #region Search Criteria
+                    this.mUIPleasecheckthefollowText.SearchProperties[WinText.PropertyNames.Name] = "Please check the following.Name is required.Please select a occupation.Please sel" +
+                        "ect marital status.Please select health status.";
+                    this.mUIPleasecheckthefollowText.WindowTitles.Add("Registration error");
+                    #endregion
+                }
+                return this.mUIPleasecheckthefollowText;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinText mUIPleasecheckthefollowText;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemWindow11 : WinWindow
+    {
+        
+        public UIItemWindow11()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.AccessibleName] = "Calendar Control";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "SysMonthCal32";
+            #endregion
+        }
+        
+        #region Properties
+        public UIDesktopCalendar UIDesktopCalendar
+        {
+            get
+            {
+                if ((this.mUIDesktopCalendar == null))
+                {
+                    this.mUIDesktopCalendar = new UIDesktopCalendar(this);
+                }
+                return this.mUIDesktopCalendar;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIDesktopCalendar mUIDesktopCalendar;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIDesktopCalendar : WinCalendar
+    {
+        
+        public UIDesktopCalendar(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+        }
+        
+        #region Properties
+        public WinButton UIItemButton
+        {
+            get
+            {
+                if ((this.mUIItemButton == null))
+                {
+                    this.mUIItemButton = new WinButton(this);
+                }
+                return this.mUIItemButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIItemButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UISocialclubLoginWindow1 : WinWindow
+    {
+        
+        public UISocialclubLoginWindow1()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Social club - Login";
+            this.SearchProperties.Add(new PropertyExpression(WinWindow.PropertyNames.ClassName, "WindowsForms10.Window", PropertyExpressionOperator.Contains));
+            this.FilterProperties[WinWindow.PropertyNames.OrderOfInvocation] = "2";
+            this.WindowTitles.Add("Social club - Login");
+            #endregion
+        }
+        
+        #region Properties
+        public UITxtUsernameWindow1 UITxtUsernameWindow
+        {
+            get
+            {
+                if ((this.mUITxtUsernameWindow == null))
+                {
+                    this.mUITxtUsernameWindow = new UITxtUsernameWindow1(this);
+                }
+                return this.mUITxtUsernameWindow;
+            }
+        }
+        
+        public UITxtPasswordWindow1 UITxtPasswordWindow
+        {
+            get
+            {
+                if ((this.mUITxtPasswordWindow == null))
+                {
+                    this.mUITxtPasswordWindow = new UITxtPasswordWindow1(this);
+                }
+                return this.mUITxtPasswordWindow;
+            }
+        }
+        
+        public UILoginWindow1 UILoginWindow
+        {
+            get
+            {
+                if ((this.mUILoginWindow == null))
+                {
+                    this.mUILoginWindow = new UILoginWindow1(this);
+                }
+                return this.mUILoginWindow;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UITxtUsernameWindow1 mUITxtUsernameWindow;
+        
+        private UITxtPasswordWindow1 mUITxtPasswordWindow;
+        
+        private UILoginWindow1 mUILoginWindow;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITxtUsernameWindow1 : WinWindow
+    {
+        
+        public UITxtUsernameWindow1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "txtUsername";
+            this.WindowTitles.Add("Social club - Login");
+            #endregion
+        }
+        
+        #region Properties
+        public WinEdit UITxtUsernameEdit
+        {
+            get
+            {
+                if ((this.mUITxtUsernameEdit == null))
+                {
+                    this.mUITxtUsernameEdit = new WinEdit(this);
+                    #region Search Criteria
+                    this.mUITxtUsernameEdit.SearchProperties[WinEdit.PropertyNames.Name] = "Username:";
+                    this.mUITxtUsernameEdit.WindowTitles.Add("Social club - Login");
+                    #endregion
+                }
+                return this.mUITxtUsernameEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinEdit mUITxtUsernameEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UITxtPasswordWindow1 : WinWindow
+    {
+        
+        public UITxtPasswordWindow1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "txtPassword";
+            this.WindowTitles.Add("Social club - Login");
+            #endregion
+        }
+        
+        #region Properties
+        public WinEdit UITxtPasswordEdit
+        {
+            get
+            {
+                if ((this.mUITxtPasswordEdit == null))
+                {
+                    this.mUITxtPasswordEdit = new WinEdit(this);
+                    #region Search Criteria
+                    this.mUITxtPasswordEdit.WindowTitles.Add("Social club - Login");
+                    #endregion
+                }
+                return this.mUITxtPasswordEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinEdit mUITxtPasswordEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UILoginWindow1 : WinWindow
+    {
+        
+        public UILoginWindow1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ControlName] = "btnLogin";
+            this.WindowTitles.Add("Social club - Login");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UILoginButton
+        {
+            get
+            {
+                if ((this.mUILoginButton == null))
+                {
+                    this.mUILoginButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUILoginButton.SearchProperties[WinButton.PropertyNames.Name] = "Login";
+                    this.mUILoginButton.WindowTitles.Add("Social club - Login");
+                    #endregion
+                }
+                return this.mUILoginButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUILoginButton;
         #endregion
     }
 }

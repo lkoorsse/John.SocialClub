@@ -6,22 +6,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CodedUITestProject1
 {
     /// <summary>
-    /// Summary description for LoginSuccessTest
+    /// Summary description for CodedUITest1
     /// </summary>
     [CodedUITest]
-    public class LoginSuccessTest
+    public class CodedUITest1
     {
-        public LoginSuccessTest()
+        public CodedUITest1()
         {
         }
 
-        
-
         [TestMethod]
-        public void LoginToRegister()
+        public void CodedUITestMethod1()
         {
-            this.UIMap.LoginSuccess();
-            this.UIMap.AssertRegistrationPage();
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
         }
 
@@ -61,20 +57,5 @@ namespace CodedUITestProject1
             }
         }
         private TestContext testContextInstance;
-
-        public UIMap UIMap
-        {
-            get
-            {
-                if ((this.map == null))
-                {
-                    this.map = new UIMap();
-                }
-
-                return this.map;
-            }
-        }
-
-        private UIMap map;
     }
 }
