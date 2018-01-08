@@ -1024,6 +1024,23 @@ namespace CodedUITestProject1
             Assert.AreEqual(this.CheckEntryExistFilterOnAndExpectedValues.UIAnaCellFriendlyName, uIAnaCell.FriendlyName, "member entry should return if both filter search match existing member");
         }
         
+        /// <summary>
+        /// Closing Excel Sheet
+        /// </summary>
+        public void CloseExcelSheetDisplayed()
+        {
+            #region Variable Declarations
+            WinButton uICloseButton = this.UISheet1ExcelWindow.UIItemWindow.UIRibbonPropertyPage.UICloseButton;
+            WinButton uIDontSaveButton = this.UIMicrosoftExcelWindow.UIMicrosoftExcelDialog.UIDontSaveButton;
+            #endregion
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(0, 7));
+
+            // Click 'Don't Save' button
+            Mouse.Click(uIDontSaveButton, new Point(24, 12));
+        }
+        
         #region Properties
         public virtual LoginSuccessParams LoginSuccessParams
         {
@@ -1564,6 +1581,18 @@ namespace CodedUITestProject1
                 return this.mUISheet1ExcelWindow;
             }
         }
+        
+        public UIMicrosoftExcelWindow UIMicrosoftExcelWindow
+        {
+            get
+            {
+                if ((this.mUIMicrosoftExcelWindow == null))
+                {
+                    this.mUIMicrosoftExcelWindow = new UIMicrosoftExcelWindow();
+                }
+                return this.mUIMicrosoftExcelWindow;
+            }
+        }
         #endregion
         
         #region Fields
@@ -1656,6 +1685,8 @@ namespace CodedUITestProject1
         private UIPrintWindow1 mUIPrintWindow;
         
         private UISheet1ExcelWindow mUISheet1ExcelWindow;
+        
+        private UIMicrosoftExcelWindow mUIMicrosoftExcelWindow;
         #endregion
     }
     
@@ -5975,10 +6006,97 @@ namespace CodedUITestProject1
                 return this.mUISheet1ExcelTitleBar;
             }
         }
+        
+        public WinButton UICloseButton
+        {
+            get
+            {
+                if ((this.mUICloseButton == null))
+                {
+                    this.mUICloseButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUICloseButton.SearchProperties[WinButton.PropertyNames.Name] = "Close";
+                    this.mUICloseButton.WindowTitles.Add("Sheet1 - Excel");
+                    #endregion
+                }
+                return this.mUICloseButton;
+            }
+        }
         #endregion
         
         #region Fields
         private WinTitleBar mUISheet1ExcelTitleBar;
+        
+        private WinButton mUICloseButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIMicrosoftExcelWindow : WinWindow
+    {
+        
+        public UIMicrosoftExcelWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Microsoft Excel";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "NUIDialog";
+            this.WindowTitles.Add("Microsoft Excel");
+            #endregion
+        }
+        
+        #region Properties
+        public UIMicrosoftExcelDialog UIMicrosoftExcelDialog
+        {
+            get
+            {
+                if ((this.mUIMicrosoftExcelDialog == null))
+                {
+                    this.mUIMicrosoftExcelDialog = new UIMicrosoftExcelDialog(this);
+                }
+                return this.mUIMicrosoftExcelDialog;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIMicrosoftExcelDialog mUIMicrosoftExcelDialog;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIMicrosoftExcelDialog : WinControl
+    {
+        
+        public UIMicrosoftExcelDialog(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[UITestControl.PropertyNames.Name] = "Microsoft Excel";
+            this.SearchProperties[UITestControl.PropertyNames.ControlType] = "Dialog";
+            this.WindowTitles.Add("Microsoft Excel");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UIDontSaveButton
+        {
+            get
+            {
+                if ((this.mUIDontSaveButton == null))
+                {
+                    this.mUIDontSaveButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUIDontSaveButton.SearchProperties[WinButton.PropertyNames.Name] = "Don\'t Save";
+                    this.mUIDontSaveButton.WindowTitles.Add("Microsoft Excel");
+                    #endregion
+                }
+                return this.mUIDontSaveButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUIDontSaveButton;
         #endregion
     }
 }

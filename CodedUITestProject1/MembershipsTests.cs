@@ -16,10 +16,18 @@ namespace CodedUITestProject1
         {
         }
 
-       
+        [TestInitialize]
+        public void TestInitialize()
+        {
+
+            ApplicationUnderTest.Launch(@"C:\Codep\John.SocialClub\John.SocialClub.Desktop\bin\Debug\John.SocialClub.Desktop.exe");
+        }
+        
+
         [TestMethod]
         public void MembershipUpdate()
         {
+         
             this.UIMap.LoginSuccess();
             this.UIMap.NewRegistrationForCheckEntry();
             this.UIMap.UpdateNewMemberNoChildren();
@@ -116,15 +124,17 @@ namespace CodedUITestProject1
             this.UIMap.SocialClubApplicationClose();
 
         }
-        
+
 
         [TestMethod]
-            public void MembershipPageActionPrintExport()
-            {
+        public void MembershipPageActionPrintExport()
+        {
+
             this.UIMap.LoginSuccess();
             this.UIMap.NewRegistrationForCheckEntry();
             this.UIMap.ManageMemberSelectExport();
             this.UIMap.ManageMemberSelectExportExcelDisplay();
+            this.UIMap.CloseExcelSheetDisplayed();
             this.UIMap.SocialClubApplicationClose();
 
         }

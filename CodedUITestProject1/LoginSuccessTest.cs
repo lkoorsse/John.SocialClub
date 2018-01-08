@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UITesting;
+﻿using System.IO;
+using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -16,6 +17,12 @@ namespace CodedUITestProject1
         {
         }
 
+        [TestInitialize]
+        public void TestInitialize()
+        {
+           
+            ApplicationUnderTest.Launch(@"C:\Codep\John.SocialClub\John.SocialClub.Desktop\bin\Debug\John.SocialClub.Desktop.exe");
+        }
 
         [TestMethod]
         public void LoginToRegister()
@@ -26,6 +33,7 @@ namespace CodedUITestProject1
            
         }
 
+     
         #region Additional test attributes
 
         // You can use the following additional attributes as you write your tests:

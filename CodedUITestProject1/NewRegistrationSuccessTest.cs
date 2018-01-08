@@ -15,7 +15,13 @@ namespace CodedUITestProject1
         {
         }
 
-       
+        [TestInitialize]
+        public void TestInitialize()
+        {
+
+            ApplicationUnderTest.Launch(@"C:\Codep\John.SocialClub\John.SocialClub.Desktop\bin\Debug\John.SocialClub.Desktop.exe");
+        }
+
         [TestMethod]
         public void RegisterSuccess()
         {
