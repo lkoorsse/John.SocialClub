@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
-
 namespace CodedUITestProject1
 {
     /// <summary>
