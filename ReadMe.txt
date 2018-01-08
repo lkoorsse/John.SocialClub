@@ -49,6 +49,18 @@ How to use the code
 
 
 
+		------------------------
+		For Coded UI TestProject
+
+		- ReSharper addition to Solution
+		- Coded UI Test Run requires change to  path for John.SocialClub.Desktop.exe
+		- Test run results located in Test Results folder -  JohnSocialClub Playlist
+		
+
+
+
+
+
 
 
 
