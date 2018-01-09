@@ -1,0 +1,93 @@
+Total Tests: 13
+Passed Tests: 10
+Failed Tests: 3
+
+Test Name:	RegMandatoryError
+Test FullName:	CodedUITestProject1.RegistrationMandatoryError.RegMandatoryError
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\RegistrationMandatoryError.cs : line 26
+Test Outcome:	Passed
+Test Duration:	0:00:05.7221937
+
+Test Name:	RegisterSuccess
+Test FullName:	CodedUITestProject1.NewRegistrationSuccessTest.RegisterSuccess
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\NewRegistrationSuccessTest.cs : line 27
+Test Outcome:	Passed
+Test Duration:	0:00:15.1709488
+
+Test Name:	MembershipUpdate
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipUpdate
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 29
+Test Outcome:	Passed
+Test Duration:	0:00:24.7295788
+
+Test Name:	MembershipPageFilterSearchOnOR
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipPageFilterSearchOnOR
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 53
+Test Outcome:	Passed
+Test Duration:	0:00:23.1273765
+
+Test Name:	MembershipPageFilterSearchOnAnd
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipPageFilterSearchOnAnd
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 65
+Test Outcome:	Passed
+Test Duration:	0:00:20.9612643
+
+Test Name:	MembershipPageControls
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipPageControls
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 43
+Test Outcome:	Passed
+Test Duration:	0:00:17.1476616
+
+Test Name:	MembershipPageActionPrintPreview
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipPageActionPrintPreview
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 118
+Test Outcome:	Passed
+Test Duration:	0:00:17.1273726
+
+Test Name:	MembershipPageActionPrintExport
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipPageActionPrintExport
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 131
+Test Outcome:	Passed
+Test Duration:	0:00:18.7530551
+
+Test Name:	MembershipPageActionPrint
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipPageActionPrint
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 106
+Test Outcome:	Passed
+Test Duration:	0:00:16.3939464
+
+Test Name:	LoginToRegister
+Test FullName:	CodedUITestProject1.LoginSuccessTest.LoginToRegister
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\LoginSuccessTest.cs : line 29
+Test Outcome:	Passed
+Test Duration:	0:00:03.5986328
+
+Test Name:	MembershipRefreshNoFilterSearch
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipRefreshNoFilterSearch
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 92
+Test Outcome:	Failed
+Test Duration:	0:00:17.0654473
+
+Result StackTrace:	
+at CodedUITestProject1.UIMap.MemberSearchNoValueFilterNoMemberResults() in C:\Codep\John.SocialClub\CodedUITestProject1\UIMap.Designer.cs:line 998
+   at CodedUITestProject1.MembershipsTests.MembershipRefreshNoFilterSearch() in C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs:line 98
+Result Message:	Assert.AreNotEqual failed. Expected any value except:<ana>. Actual:<ana>. Whe Search and filter on blank values should not return any member entries
+
+
+Test Name:	MembershipRefreshFilter
+Test FullName:	CodedUITestProject1.MembershipsTests.MembershipRefreshFilter
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 78
+Test Outcome:	Failed
+Test Duration:	0:00:19.5005422
+
+Result StackTrace:	
+at CodedUITestProject1.UIMap.ManageRefreshFilterClearsOccupationField() in C:\Codep\John.SocialClub\CodedUITestProject1\UIMap.Designer.cs:line 815
+   at CodedUITestProject1.MembershipsTests.MembershipRefreshFilter() in C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs:line 83
+Result Message:	Assert.AreEqual failed. Expected:<>. Actual:<cmbSearchOccupation>. refresh should clear Occupation Field
+
+Test Name:	DeleteMemberClearFields
+Test FullName:	CodedUITestProject1.MembershipsTests.DeleteMemberClearFields
+Test Source:	C:\Codep\John.SocialClub\CodedUITestProject1\MembershipsTests.cs : line 145
+Test Outcome:	Failed
+Test Duration:	0:00:33.9840205
+
